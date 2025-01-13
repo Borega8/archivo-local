@@ -1,0 +1,28 @@
+appId: dev.borega8:archivo-local
+productName: archivo-local
+directories:
+  buildResources: build
+files:
+  - '!**/.vscode/*'
+  - '!src/*'
+  - '!electron.vite.config.{js,ts,mjs,cjs}'
+  - '!{.eslintignore,.eslintrc.cjs,.prettierignore,.prettierrc.yaml,dev-app-update.yml,CHANGELOG.md,README.md}'
+  - '!{.env,.env.*,.npmrc,pnpm-lock.yaml}'
+  - '!{tsconfig.json,tsconfig.node.json,tsconfig.web.json}'
+asarUnpack:
+  - resources/**
+win:
+  executableName: archivo-municipal
+  target:
+    - target: nsis
+      arch:
+        - x64
+        - ia32
+nsis:
+  artifactName: ${name}-${version}-setup.${ext}
+  shortcutName: 'Archivo Municipal de Uruapan'
+  uninstallDisplayName: 'Archivo Municipal de Uruapan'
+  createDesktopShortcut: always
+dmg:
+  artifactName: ${name}-${version}.${ext}
+npmRebuild: false
