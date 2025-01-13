@@ -29,7 +29,8 @@
     "@mui/lab": "6.0.0-beta.22",
     "@mui/material": "6.3.1",
     "@mui/x-date-pickers": "7.23.6",
-    "react-router-dom": "7.1.1"
+    "react-router-dom": "7.1.1",
+    "zustand": "5.0.3"
   },
   "devDependencies": {
     "@electron-toolkit/eslint-config-prettier": "2.0.0",
