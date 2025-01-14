@@ -1,6 +1,7 @@
 import { app, BrowserWindow, ipcMain } from 'electron'
 import { electronApp, optimizer } from '@electron-toolkit/utils'
 import createWindow from './utils/createWindow'
+import server from './config/express'
 
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
@@ -15,6 +16,7 @@ app.whenReady().then(() => {
   ipcMain.on('ping', () => console.log('pong'))
 
   createWindow()
+  server.listen(5000)
 
   app.on('activate', function () {
     if (BrowserWindow.getAllWindows().length === 0) createWindow()
