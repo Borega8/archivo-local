@@ -1,6 +1,6 @@
 import { BrowserWindow, shell } from 'electron'
 import { join } from 'node:path'
-import icon from '../../resources/icon.png?asset'
+import icon from '../../../resources/icon.png?asset'
 import { is } from '@electron-toolkit/utils'
 
 export default function createWindow(): void {
