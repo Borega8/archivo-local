@@ -8,5 +8,5 @@
   "[json]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "conventionalCommits.scopes": ["dependencies", "config", "server"]
+  "conventionalCommits.scopes": ["dependencies", "config", "server", "db"]
 }
