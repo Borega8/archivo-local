@@ -1,0 +1,55 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../node_modules/@local/prisma/client"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:../data/local.db"
+}
+
+model SeriesCalisificacion {
+  serie_id          Int                           @id @default(autoincrement())
+  serie             String                        @unique
+  titulo            String
+}
+
+model DocumentosRecibidos {
+  documento_id              Int                        @id @default(autoincrement())
+  nombre                    String        
+  dependencia               String        
+  no_oficio                 String        
+  asunto                    String        
+  fecha_oficio              String
+  para                      String        
+  atn                       String        
+  quien_firma               String        
+  quien_recibe              String        
+  fecha_recibido            String
+  turnado                   String        
+  estado                    String        
+  codigo_clasificacion      String        
+  ubicacion                 String        
+  observaciones             String        
+  file_path                 String        
+}
+
+model DocumentosEnviados {
+  documento_id              Int                         @id @default(autoincrement())
+  nombre                    String        
+  dependencia               String        
+  no_oficio                 String        
+  asunto                    String        
+  fecha_oficio              String        
+  para                      String        
+  atn                       String        
+  quien_firma               String        
+  quien_elaboro             String        
+  fecha_recibido            String        
+  quien_recibe              String        
+  estado                    String        
+  codigo_clasificacion      String        
+  ubicacion                 String        
+  observaciones             String        
+  file_path                 String        
+}
