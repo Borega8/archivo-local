@@ -1,4 +1,4 @@
 export enum FileType {
-  RECEIVED,
-  SENT
+  RECEIVED = 'Received',
+  SENT = 'Sent'
 }
