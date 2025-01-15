@@ -4,6 +4,31 @@ import { TFile } from '../types/File'
 import { ReturnValue } from '../types/ReturnValue'
 
 export class FileModel {
+  static async getById(id: number, type: FileType): Promise<ReturnValue<TFile>> {
+    let file: unknown = null
+    try {
+      if (type == FileType.RECEIVED) {
+        file = await prisma.documentosRecibidos.findUnique({
+          where: {
+            documento_id: id
+          }
+        })
+      } else if (type == FileType.SENT) {
+        file = await prisma.documentosEnviados.findUnique({
+          where: {
+            documento_id: id
+          }
+        })
+      }
+
+      return file
+        ? { data: file as TFile }
+        : { error: new Error('File not found, please check the param values'), status: 404 }
+    } catch (error) {
+      return { error: new Error('Something went wrong, please try again'), status: 500 }
+    }
+  }
+
   static async getAll(type: FileType): Promise<ReturnValue<TFile[]>> {
     try {
       if (type == FileType.RECEIVED) {

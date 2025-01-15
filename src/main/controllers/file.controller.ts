@@ -4,7 +4,13 @@ import { FileType } from '../constants/file'
 import { TFile } from '../types/File'
 
 export class FileController {
-  static async getById(req: Request, res: Response) {}
+  static async getById(req: Request, res: Response) {
+    const { id } = req.params
+    const { type } = req.query
+    const { data, error, status } = await FileModel.getById(Number(id), type as FileType)
+
+    return error ? res.status(status).json({ error: error.message }) : res.status(200).json(data)
+  }
 
   static async getAll(req: Request, res: Response) {
     const { type } = req.query
