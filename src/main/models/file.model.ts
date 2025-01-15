@@ -184,4 +184,39 @@ export class FileModel {
 
     return { error: new Error('Incorrect file type'), status: 400 }
   }
+
+  static async deleteById(id: number, type: FileType): Promise<ReturnValue<TFile>> {
+    let file: unknown = null
+    try {
+      if (type == FileType.RECEIVED) {
+        const fileFound = await prisma.documentosRecibidos.findUnique({
+          where: { documento_id: id }
+        })
+        if (!fileFound) return { error: new Error('File not found'), status: 404 }
+
+        file = await prisma.documentosRecibidos.delete({
+          where: {
+            documento_id: id
+          }
+        })
+      } else if (type == FileType.SENT) {
+        const fileFound = await prisma.documentosEnviados.findUnique({
+          where: { documento_id: id }
+        })
+        if (!fileFound) return { error: new Error('File not found'), status: 404 }
+
+        file = await prisma.documentosEnviados.delete({
+          where: {
+            documento_id: id
+          }
+        })
+      }
+
+      return file
+        ? { data: file as TFile }
+        : { error: new Error('File not found, please check the param values'), status: 404 }
+    } catch (error) {
+      return { error: new Error('Something went wrong, please try again'), status: 500 }
+    }
+  }
 }

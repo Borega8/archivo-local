@@ -163,5 +163,12 @@ export class FileController {
       : res.status(200).json(data)
   }
 
-  static async deleteById(req: Request, res: Response) {}
+  static async deleteById(req: Request, res: Response) {
+    const { id } = req.params
+    const { type } = req.query
+
+    const { data, error, status } = await FileModel.deleteById(Number(id), type as FileType)
+
+    return error ? res.status(status).json({ error: error.message }) : res.status(200).json(data)
+  }
 }
