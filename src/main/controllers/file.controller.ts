@@ -6,7 +6,12 @@ import { TFile } from '../types/File'
 export class FileController {
   static async getById(req: Request, res: Response) {}
 
-  static async getAll(req: Request, res: Response) {}
+  static async getAll(req: Request, res: Response) {
+    const { type } = req.query
+    const { data, error, status } = await FileModel.getAll(type as FileType)
+
+    return error ? res.status(status).json({ error: error.message }) : res.status(201).json(data)
+  }
 
   static async create(req: Request, res: Response) {
     const {
