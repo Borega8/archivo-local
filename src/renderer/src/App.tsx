@@ -1,8 +1,15 @@
+import { HashRouter, Route, Routes } from 'react-router-dom'
+import { AppRoutes } from './constants/routes'
+
 function App(): JSX.Element {
   return (
-    <>
-      <h1>Archivo local</h1>
-    </>
+    <HashRouter>
+      <Routes>
+        {AppRoutes.map((route) => (
+          <Route key={route.path} path={route.path} Component={route.element} />
+        ))}
+      </Routes>
+    </HashRouter>
   )
 }
 
