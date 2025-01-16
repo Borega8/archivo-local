@@ -1,0 +1,145 @@
+@import url('@fontsource/poppins/400');
+@import url('@fontsource/poppins/500');
+@import url('@fontsource/poppins/600');
+@import url('@fontsource/poppins/700');
+
+/* ====================================== */
+/* =========== DISPLAY ================== */
+/* ====================================== */
+.display-large-prominent {
+  font-weight: 700;
+  font-size: 64px;
+  line-height: 64px;
+  letter-spacing: -0.25px;
+}
+
+.display-large {
+  font-weight: 400;
+  font-size: 57px;
+  line-height: 64px;
+  letter-spacing: -0.25px;
+}
+
+.display-medium {
+  font-weight: 400;
+  font-size: 45px;
+  line-height: 52px;
+  letter-spacing: 0;
+}
+
+.display-small {
+  font-weight: 400;
+  font-size: 36px;
+  line-height: 44px;
+  letter-spacing: 0;
+}
+
+/* ====================================== */
+/* =========== HEADLINE ================= */
+/* ====================================== */
+.headline-large {
+  font-weight: 400;
+  font-size: 32px;
+  line-height: 40px;
+  letter-spacing: 0;
+}
+
+.headline-medium {
+  font-weight: 400;
+  font-size: 28px;
+  line-height: 36px;
+  letter-spacing: 0;
+}
+
+.headline-small {
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 32px;
+  letter-spacing: 0;
+}
+
+/* ====================================== */
+/* =========== TITLE ==================== */
+/* ====================================== */
+.title-large {
+  font-weight: 400;
+  font-size: 22px;
+  line-height: 28px;
+  letter-spacing: 0;
+}
+
+.title-medium {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0.15px;
+}
+
+.title-small {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: 0.1px;
+}
+
+/* ====================================== */
+/* =========== BODY ===================== */
+/* ====================================== */
+.body-large {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0.5px;
+}
+
+.body-medium {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: 0.25px;
+}
+
+.body-small {
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: 0.4px;
+}
+
+/* ====================================== */
+/* =========== LABEL ==================== */
+/* ====================================== */
+.label-large {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: 0.1px;
+}
+
+.label-large-prominent {
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 20px;
+  letter-spacing: 0.1px;
+}
+
+.label-medium {
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: 0.5px;
+}
+
+.label-medium-prominent {
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: 0.5px;
+}
+
+.label-small {
+  font-weight: 500;
+  font-size: 11px;
+  line-height: 16px;
+  letter-spacing: 0.5px;
+}
