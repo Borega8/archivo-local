@@ -1,3 +1,5 @@
+import { MainLayout } from '@renderer/layouts/MainLayout'
+
 export function Home() {
-  return <div>Home</div>
+  return <MainLayout title="Inicio"></MainLayout>
 }
