@@ -32,3 +32,5 @@ export const AppRoutes: AppRoutesType[] = [
   { path: AppRoutesEnum.EDIT_RECEIVED, element: EditReceived },
   { path: AppRoutesEnum.EDIT_SENT, element: EditSent }
 ]
+
+export const SERVER_URL = 'http://localhost:5000'
