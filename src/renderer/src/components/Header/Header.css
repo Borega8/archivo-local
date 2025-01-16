@@ -1,0 +1,11 @@
+.header {
+  height: 120px;
+  padding: 24px 24px 24px 104px;
+}
+
+.header-title {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  height: 72px;
+}
