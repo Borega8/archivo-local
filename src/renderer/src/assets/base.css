@@ -1,55 +1,68 @@
-:root {
-  --ev-c-white: #ffffff;
-  --ev-c-white-soft: #f8f8f8;
-  --ev-c-white-mute: #f2f2f2;
-
-  --ev-c-black: #1b1b1f;
-  --ev-c-black-soft: #222222;
-  --ev-c-black-mute: #282828;
-
-  --ev-c-gray-1: #515c67;
-  --ev-c-gray-2: #414853;
-  --ev-c-gray-3: #32363f;
-
-  --ev-c-text-1: rgba(255, 255, 245, 0.86);
-  --ev-c-text-2: rgba(235, 235, 245, 0.6);
-  --ev-c-text-3: rgba(235, 235, 245, 0.38);
-
-  --ev-button-alt-border: transparent;
-  --ev-button-alt-text: var(--ev-c-text-1);
-  --ev-button-alt-bg: var(--ev-c-gray-3);
-  --ev-button-alt-hover-border: transparent;
-  --ev-button-alt-hover-text: var(--ev-c-text-1);
-  --ev-button-alt-hover-bg: var(--ev-c-gray-2);
-}
+@import 'font.css';
 
 :root {
-  --color-background: var(--ev-c-black);
-  --color-background-soft: var(--ev-c-black-soft);
-  --color-background-mute: var(--ev-c-black-mute);
-
-  --color-text: var(--ev-c-text-1);
+  --md-sys-color-primary: #8a0f5c;
+  --md-sys-color-surface-tint: #a72c74;
+  --md-sys-color-on-primary: #ffffff;
+  --md-sys-color-primary-container: #b93b82;
+  --md-sys-color-on-primary-container: #ffffff;
+  --md-sys-color-secondary: #874b69;
+  --md-sys-color-on-secondary: #ffffff;
+  --md-sys-color-secondary-container: #ffbdda;
+  --md-sys-color-on-secondary-container: #602a46;
+  --md-sys-color-tertiary: #8c1c0b;
+  --md-sys-color-on-tertiary: #ffffff;
+  --md-sys-color-tertiary-container: #bf402c;
+  --md-sys-color-on-tertiary-container: #ffffff;
+  --md-sys-color-error: #ba1a1a;
+  --md-sys-color-on-error: #ffffff;
+  --md-sys-color-error-container: #ffdad6;
+  --md-sys-color-on-error-container: #410002;
+  --md-sys-color-background: #fff8f8;
+  --md-sys-color-on-background: #23191d;
+  --md-sys-color-surface: #fff8f8;
+  --md-sys-color-on-surface: #23191d;
+  --md-sys-color-surface-variant: #f8dbe5;
+  --md-sys-color-on-surface-variant: #554149;
+  --md-sys-color-outline: #88717a;
+  --md-sys-color-outline-variant: #dbbfc9;
+  --md-sys-color-shadow: #000000;
+  --md-sys-color-scrim: #000000;
+  --md-sys-color-inverse-surface: #392d32;
+  --md-sys-color-inverse-on-surface: #ffecf2;
+  --md-sys-color-inverse-primary: #ffafd3;
+  --md-sys-color-primary-fixed: #ffd8e7;
+  --md-sys-color-on-primary-fixed: #3d0026;
+  --md-sys-color-primary-fixed-dim: #ffafd3;
+  --md-sys-color-on-primary-fixed-variant: #880c5b;
+  --md-sys-color-secondary-fixed: #ffd8e7;
+  --md-sys-color-on-secondary-fixed: #380824;
+  --md-sys-color-secondary-fixed-dim: #fcb1d2;
+  --md-sys-color-on-secondary-fixed-variant: #6c3450;
+  --md-sys-color-tertiary-fixed: #ffdad4;
+  --md-sys-color-on-tertiary-fixed: #3f0300;
+  --md-sys-color-tertiary-fixed-dim: #ffb4a6;
+  --md-sys-color-on-tertiary-fixed-variant: #8b1a0a;
+  --md-sys-color-surface-dim: #e9d5db;
+  --md-sys-color-surface-bright: #fff8f8;
+  --md-sys-color-surface-container-lowest: #ffffff;
+  --md-sys-color-surface-container-low: #fff0f4;
+  --md-sys-color-surface-container: #fde9ef;
+  --md-sys-color-surface-container-high: #f7e3e9;
+  --md-sys-color-surface-container-highest: #f1dde4;
 }
-
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
+* {
   margin: 0;
-  font-weight: normal;
-}
-
-ul {
-  list-style: none;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
-  min-height: 100vh;
-  color: var(--color-text);
-  background: var(--color-background);
-  line-height: 1.6;
+  background-color: var(--md-sys-color-surface);
+  box-sizing: border-box;
   font-family:
-    Inter,
+    'Poppins',
+    system-ui,
     -apple-system,
     BlinkMacSystemFont,
     'Segoe UI',
@@ -57,11 +70,62 @@ body {
     Oxygen,
     Ubuntu,
     Cantarell,
-    'Fira Sans',
-    'Droid Sans',
+    'Open Sans',
     'Helvetica Neue',
     sans-serif;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+::-webkit-scrollbar-track {
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: grey;
+  border-radius: 10px;
+}
+
+main {
+  padding: 24px 24px 24px 0;
+  margin-left: 104px;
+  /* overflow-x: scroll; */
+}
+
+h3 {
+  text-align: center;
+}
+
+form {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 24px;
+  gap: 24px;
+  justify-content: center;
+  width: fit-content;
+  padding-bottom: 24px;
+}
+
+table,
+th,
+td {
+  border: 1px solid var(--md-sys-color-outline-variant);
+}
+
+table {
+  border-collapse: collapse;
+}
+
+th,
+td {
+  padding: 8px 12px;
+  text-align: center;
+}
+
+.scroll-x {
+  overflow-x: scroll;
 }
