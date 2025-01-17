@@ -1,3 +1,3 @@
 export function EditSent() {
-  return <div>EditReceived</div>
+  return <div>EditSent</div>
 }
