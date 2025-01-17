@@ -1,4 +1,4 @@
-import { FilesTable } from '@renderer/components'
+import { FilesTable, ProgressBar } from '@renderer/components'
 import { FileType } from '@renderer/constants/file'
 import { columnsFileReceived } from '@renderer/constants/tableColumns'
 import { useFilesTable } from '@renderer/hooks/useFilesTable'
@@ -7,9 +7,8 @@ import { ContentScrollableLayout } from '@renderer/layouts/ContentScrollableLayo
 import { MainLayout } from '@renderer/layouts/MainLayout'
 
 export function Received() {
-  const { data: files, isLoading, error } = useGetFiles(FileType.RECEIVED)
+  const { data: files, isFetching, isPending, error } = useGetFiles(FileType.RECEIVED)
 
-  isLoading && <h3>Locading...</h3>
   error && <h3>{error.message}</h3>
 
   const { table } = useFilesTable({
@@ -39,6 +38,8 @@ export function Received() {
       <ContentScrollableLayout>
         <FilesTable table={table} type={FileType.RECEIVED} handleOpen={null} />
       </ContentScrollableLayout>
+
+      {(isFetching || isPending) && <ProgressBar />}
     </MainLayout>
   )
 }
