@@ -16,7 +16,7 @@ export function NavigationElement({
   iconActive,
   iconInactive
 }: NavigationElementProps) {
-  const isCurrentPage = currentPath === to || currentPath.includes(to)
+  const isCurrentPage = currentPath === to || currentPath.startsWith(to)
   return (
     <NavLink
       to={to}

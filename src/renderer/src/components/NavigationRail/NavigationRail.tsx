@@ -22,21 +22,21 @@ export function NavigationRail() {
       />
       <section className="links">
         <NavigationElement
-          currentPath={currentPath === '' ? '/' : currentPath}
+          currentPath={currentPath === '#/' || currentPath === '' ? '/' : currentPath}
           to={AppRoutesEnum.HOME}
           label="Principal"
           iconActive={<Home />}
           iconInactive={<HomeOutlined />}
         />
         <NavigationElement
-          currentPath={currentPath}
+          currentPath={currentPath.slice(1)}
           to={AppRoutesEnum.RECEIVED}
           label="Recibidos"
           iconActive={<Input />}
           iconInactive={<InputOutlined />}
         />
         <NavigationElement
-          currentPath={currentPath}
+          currentPath={currentPath.slice(1)}
           to={AppRoutesEnum.SENT}
           label="Enviados"
           iconActive={<Output />}
