@@ -1,4 +1,4 @@
-import { FilesTable, ProgressBar } from '@renderer/components'
+import { AlertMessage, FilesTable, ProgressBar } from '@renderer/components'
 import { FileType } from '@renderer/constants/file'
 import { columnsFileReceived } from '@renderer/constants/tableColumns'
 import { useFilesTable } from '@renderer/hooks/useFilesTable'
@@ -8,8 +8,6 @@ import { MainLayout } from '@renderer/layouts/MainLayout'
 
 export function Received() {
   const { data: files, isFetching, isPending, error } = useGetFiles(FileType.RECEIVED)
-
-  error && <h3>{error.message}</h3>
 
   const { table } = useFilesTable({
     files,
@@ -40,6 +38,7 @@ export function Received() {
       </ContentScrollableLayout>
 
       {(isFetching || isPending) && <ProgressBar />}
+      {error && <AlertMessage message={error.message} isError />}
     </MainLayout>
   )
 }
