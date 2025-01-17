@@ -1,5 +1,6 @@
 import { Delete, Edit, OpenInNew } from '@mui/icons-material'
 import { IconButton } from '@mui/material'
+import { FileType } from '@renderer/constants/file'
 import { AppRoutesEnum } from '@renderer/constants/routes'
 import { TFile } from '@renderer/types/Files'
 import { useNavigate } from 'react-router-dom'
@@ -10,7 +11,7 @@ export function TableActions({
   handleOpen
 }: {
   cellData: TFile
-  type: string
+  type: FileType
   handleOpen: (file) => void
 }) {
   return (
@@ -39,13 +40,13 @@ function TableActionDelete({
   )
 }
 
-function TableActionEdit({ document_id, type }: { document_id: number; type: string }) {
+function TableActionEdit({ document_id, type }: { document_id: number; type: FileType }) {
   const navigate = useNavigate()
 
   return (
     <IconButton
       onClick={() =>
-        type === 'received'
+        type === FileType.RECEIVED
           ? navigate(`${AppRoutesEnum.RECEIVED}/${document_id}`)
           : navigate(`${AppRoutesEnum.SENT}/${document_id}`)
       }

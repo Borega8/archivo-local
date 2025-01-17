@@ -1,6 +1,7 @@
 import { TFile } from '@renderer/types/Files'
 import { Cell, Row, flexRender } from '@tanstack/react-table'
 import { TableActions } from './TableActions'
+import { FileType } from '@renderer/constants/file'
 
 export function TableBody({
   rows,
@@ -8,7 +9,7 @@ export function TableBody({
   handleOpen
 }: {
   rows: Row<TFile>[]
-  type: string
+  type: FileType
   handleOpen: (file) => void
 }) {
   return (
@@ -26,7 +27,7 @@ function TableBodyRow({
   handleOpen
 }: {
   row: Row<TFile>
-  type: string
+  type: FileType
   handleOpen: (file) => void
 }) {
   return (
@@ -44,7 +45,7 @@ function TableBodyCell({
   handleOpen
 }: {
   cell: Cell<TFile, unknown>
-  type: string
+  type: FileType
   handleOpen: (file) => void
 }) {
   return (

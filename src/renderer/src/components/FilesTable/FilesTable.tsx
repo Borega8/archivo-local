@@ -1,6 +1,7 @@
 import { Table } from '@tanstack/react-table'
 import { TableHeader } from './TableHeader'
 import { TableBody } from './TableBody'
+import { FileType } from '@renderer/constants/file'
 
 export function FilesTable({
   table,
@@ -8,7 +9,7 @@ export function FilesTable({
   handleOpen
 }: {
   table: Table<any>
-  type: string
+  type: FileType
   handleOpen?: any
 }) {
   return (

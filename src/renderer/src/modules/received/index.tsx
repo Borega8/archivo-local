@@ -37,7 +37,7 @@ export function Received() {
   return (
     <MainLayout title="Documentos de entrada">
       <ContentScrollableLayout>
-        <FilesTable table={table} type="received" handleOpen={null} />
+        <FilesTable table={table} type={FileType.RECEIVED} handleOpen={null} />
       </ContentScrollableLayout>
     </MainLayout>
   )
