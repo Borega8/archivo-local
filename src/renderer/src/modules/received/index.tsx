@@ -1,27 +1,10 @@
 import { FilesTable } from '@renderer/components'
 import { FileType } from '@renderer/constants/file'
-import { SERVER_URL } from '@renderer/constants/routes'
 import { columnsFileReceived } from '@renderer/constants/tableColumns'
 import { useFilesTable } from '@renderer/hooks/useFilesTable'
+import { useGetFiles } from '@renderer/hooks/useGetFiles'
 import { ContentScrollableLayout } from '@renderer/layouts/ContentScrollableLayout'
 import { MainLayout } from '@renderer/layouts/MainLayout'
-import { useQuery } from '@tanstack/react-query'
-
-const getFiles = async (fileType: FileType) => {
-  const response = await fetch(`${SERVER_URL}/files?type=${fileType}`)
-  const data = await response.json()
-
-  if (data.error) throw new Error(data.error)
-
-  return data
-}
-
-export function useGetFiles(fileType: FileType) {
-  return useQuery({
-    queryKey: ['files', fileType],
-    queryFn: () => getFiles(fileType)
-  })
-}
 
 export function Received() {
   const { data: files, isLoading, error } = useGetFiles(FileType.RECEIVED)
@@ -50,8 +33,6 @@ export function Received() {
       ['observations']: true
     }
   })
-
-  console.log(files)
 
   return (
     <MainLayout title="Documentos de entrada">
