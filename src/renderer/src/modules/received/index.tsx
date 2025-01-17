@@ -3,6 +3,7 @@ import { FileType } from '@renderer/constants/file'
 import { SERVER_URL } from '@renderer/constants/routes'
 import { columnsFileReceived } from '@renderer/constants/tableColumns'
 import { useFilesTable } from '@renderer/hooks/useFilesTable'
+import { ContentScrollableLayout } from '@renderer/layouts/ContentScrollableLayout'
 import { MainLayout } from '@renderer/layouts/MainLayout'
 import { useQuery } from '@tanstack/react-query'
 
@@ -54,7 +55,9 @@ export function Received() {
 
   return (
     <MainLayout title="Documentos de entrada">
-      <FilesTable table={table} type="received" handleOpen={null} />
+      <ContentScrollableLayout>
+        <FilesTable table={table} type="received" handleOpen={null} />
+      </ContentScrollableLayout>
     </MainLayout>
   )
 }
