@@ -2,9 +2,10 @@ import express, { json } from 'express'
 import cors from 'cors'
 import router from '../routes/routes'
 import { mkdir } from 'node:fs'
+import { BASE_DIR } from '../constants/basedir'
 
 const server = express()
-mkdir(`${process.env.USERPROFILE}/ARCHIVO MUNICIPAL/`, { recursive: true }, (err) => err)
+mkdir(BASE_DIR, { recursive: true }, (err) => err)
 
 server.use(
   cors({
