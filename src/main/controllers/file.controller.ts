@@ -2,6 +2,7 @@ import { Request, Response } from 'express'
 import { FileModel } from '../models/file.model'
 import { FileType } from '../constants/file'
 import { TFile } from '../types/File'
+import { mkdir, rename } from 'node:fs'
 
 export class FileController {
   static async getById(req: Request, res: Response) {
@@ -57,6 +58,36 @@ export class FileController {
       observations: string
       fileName: string
     } = req.body
+    if (!req.files) return res.status(400).json({ error: 'No file selected' })
+    const files = req.files as Express.Multer.File[]
+    let filePath = ''
+
+    if (files.length === 1) {
+      const fileExtension = `${files[0].originalname.split('.').pop()}`
+      const oldFilePath = `${files[0].destination}/${files[0].filename}`
+      filePath = `${files[0].destination}/${fileName}.${fileExtension}`
+
+      rename(oldFilePath, filePath, (err) => {
+        if (err) res.status(500).json({ error: 'Cannot rename folder' })
+      })
+    } else {
+      filePath = `${files[0].destination}/${fileName}`
+      mkdir(filePath, { recursive: true }, (err) => {
+        if (err) return res.status(500).json({ error: 'Cannot create folder' })
+        return null
+      })
+
+      files.map(async (file, index) => {
+        const fileExtension = `${files[0].originalname.split('.').pop()}`
+        const oldFilePath = `${file.destination}/${file.filename}`
+        const newFilePath = `${filePath}/${index + 1}.${fileExtension}`
+
+        rename(oldFilePath, newFilePath, (err) => {
+          if (err) return res.status(500).json({ error: 'Cannot rename folder' })
+          return null
+        })
+      })
+    }
 
     const {
       data,
@@ -80,7 +111,7 @@ export class FileController {
         quien_recibe: whoReceived,
         turnado: turn,
         ubicacion: location,
-        file_path: ''
+        file_path: filePath
       } as TFile,
       type
     )
