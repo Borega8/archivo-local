@@ -15,13 +15,13 @@ export function InputFileField({ label = 'Seleccionar archivo' }: { label?: stri
     <>
       <input
         type="file"
-        name="file"
-        id="file"
+        name="files"
+        id="files"
         className="input-file"
         onChange={handleFilesSelected}
         multiple
       />
-      <label htmlFor="file" className="file-label label-large">
+      <label htmlFor="files" className="file-label label-large">
         <UploadFileOutlined />
         {label}
       </label>
