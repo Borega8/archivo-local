@@ -1,5 +1,6 @@
-import { AlertMessage, FilesTable, ProgressBar } from '@renderer/components'
+import { AlertMessage, FilesTable, NavigationFAB, ProgressBar } from '@renderer/components'
 import { FileType } from '@renderer/constants/file'
+import { AppRoutesEnum } from '@renderer/constants/routes'
 import { columnsFileReceived } from '@renderer/constants/tableColumns'
 import { useFilesTable } from '@renderer/hooks/useFilesTable'
 import { useGetFiles } from '@renderer/hooks/useGetFiles'
@@ -36,6 +37,8 @@ export function Received() {
       <ContentScrollableLayout>
         <FilesTable table={table} type={FileType.RECEIVED} handleOpen={null} />
       </ContentScrollableLayout>
+
+      <NavigationFAB to={AppRoutesEnum.NEW_RECEIVED} />
 
       {(isFetching || isPending) && <ProgressBar />}
       {error && <AlertMessage message={error.message} isError />}
