@@ -65,7 +65,7 @@ export function DocSentForm({
       <CustomTextField
         label="Elaboró"
         variant="outlined"
-        name="whoCreate"
+        name="createdBy"
         defaultValue={file?.quien_elaboro}
       />
       <DatePicker
