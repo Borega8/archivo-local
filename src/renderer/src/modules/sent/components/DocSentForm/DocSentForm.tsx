@@ -6,7 +6,7 @@ import {
   ProgressBar,
   InputFileField
 } from '@renderer/components'
-import { FileSent } from '@renderer/types/Files'
+import { FileSent, TFile } from '@renderer/types/Files'
 import { useFileUpload } from '@hooks/useFileUpload'
 import { FileType } from '@renderer/constants/file'
 
@@ -15,7 +15,7 @@ export function DocSentForm({
   onSubmit
 }: {
   file?: FileSent
-  onSubmit?: (e: React.FormEvent<HTMLFormElement>) => Promise<FileSent>
+  onSubmit?: (e: React.FormEvent<HTMLFormElement>) => Promise<TFile>
 }) {
   const { isError, errorUploadFile, isPending, showAlert, uploadFile } = useFileUpload()
 
