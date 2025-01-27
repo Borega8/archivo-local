@@ -3,8 +3,8 @@ import { Received } from '@renderer/modules/received'
 import { NewReceived } from '@renderer/modules/received/pages/create'
 import { EditReceived } from '@renderer/modules/received/pages/edit'
 import { Sent } from '@renderer/modules/sent'
-import { NewSent } from '@renderer/modules/sent/create'
-import { EditSent } from '@renderer/modules/sent/edit'
+import { NewSent } from '@renderer/modules/sent/pages/create'
+import { EditSent } from '@renderer/modules/sent/pages/edit'
 
 export enum AppRoutesEnum {
   HOME = '/',
