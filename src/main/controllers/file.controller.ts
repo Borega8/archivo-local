@@ -160,6 +160,102 @@ export class FileController {
       observations: string
       fileName: string
     } = req.body
+    const files = req.files as Express.Multer.File[]
+
+    if (files.length == 0) {
+      const {
+        data,
+        error,
+        status: statusCode
+      } = await FileModel.update(
+        {
+          asunto: subject,
+          atn: atn,
+          codigo_clasificacion: serieCode,
+          dependencia: dependency,
+          estado: status,
+          fecha_oficio: dateFile,
+          fecha_recibido: dateReceived,
+          no_oficio: noFile,
+          nombre: fileName,
+          observaciones: observations,
+          para: to,
+          quien_elaboro: createdBy,
+          quien_firma: whoSigns,
+          quien_recibe: whoReceived,
+          turnado: turn,
+          ubicacion: location,
+          documento_id: Number(id)
+        } as TFile,
+        type
+      )
+
+      return error
+        ? res.status(statusCode).json({ error: error.message })
+        : res.status(200).json(data)
+    }
+
+    // Request have one file
+    else if (files.length == 1) {
+      const fileExtension = `${files[0].originalname.split('.').pop()}`
+      const oldFilePath = `${files[0].destination}/${files[0].filename}`
+      const newFilePath = `${files[0].destination}/${fileName}.${fileExtension}`
+
+      rename(oldFilePath, newFilePath, (err) => {
+        if (err) return res.status(500).json({ error: 'Cannot rename folder' })
+        return null
+      })
+
+      const {
+        data,
+        error,
+        status: statusCode
+      } = await FileModel.update(
+        {
+          asunto: subject,
+          atn: atn,
+          codigo_clasificacion: serieCode,
+          dependencia: dependency,
+          estado: status,
+          fecha_oficio: dateFile,
+          fecha_recibido: dateReceived,
+          no_oficio: noFile,
+          nombre: fileName,
+          observaciones: observations,
+          para: to,
+          quien_elaboro: createdBy,
+          quien_firma: whoSigns,
+          quien_recibe: whoReceived,
+          turnado: turn,
+          ubicacion: location,
+          file_path: newFilePath,
+          documento_id: Number(id)
+        } as TFile,
+        type
+      )
+
+      return error
+        ? res.status(statusCode).json({ error: error.message })
+        : res.status(200).json(data)
+    }
+
+    // Request have multiple files
+    const newDir = `${files[0].destination}/${fileName}`
+    mkdir(newDir, { recursive: true }, (err) => {
+      if (err) return res.status(500).json({ error: 'Cannot create folder' })
+      return null
+    })
+
+    files.map(async (file, index) => {
+      const fileExtension = `${files[0].originalname.split('.').pop()}`
+      const oldFilePath = `${file.destination}/${file.filename}`
+      const newFilePath = `${newDir}/${index + 1}.${fileExtension}`
+
+      rename(oldFilePath, newFilePath, (err) => {
+        if (err) return res.status(500).json({ error: 'Cannot rename folder' })
+        return null
+      })
+    })
 
     const {
       data,
@@ -183,7 +279,7 @@ export class FileController {
         quien_recibe: whoReceived,
         turnado: turn,
         ubicacion: location,
-        file_path: '',
+        file_path: newDir,
         documento_id: Number(id)
       } as TFile,
       type
