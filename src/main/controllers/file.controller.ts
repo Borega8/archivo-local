@@ -298,4 +298,15 @@ export class FileController {
 
     return error ? res.status(status).json({ error: error.message }) : res.status(200).json(data)
   }
+
+  static async getFilesYears(req: Request, res: Response) {
+    const { type } = req.query
+
+    if (!type) return res.status(400).json({ error: 'File type not received' })
+
+    const { data, error, status } = await FileModel.getYears(type as FileType)
+    if (error) return res.status(status).json({ error: error.message })
+
+    return res.json({ data })
+  }
 }

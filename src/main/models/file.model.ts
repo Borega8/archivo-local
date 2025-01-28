@@ -2,6 +2,7 @@ import { prisma } from '../constants/database'
 import { FileType } from '../constants/file'
 import { TFile } from '../types/File'
 import { ReturnValue } from '../types/ReturnValue'
+import { getYearsFromDates } from '../utils/getYearsFromDates'
 
 export class FileModel {
   static async getById(id: number, type: FileType): Promise<ReturnValue<TFile>> {
@@ -218,5 +219,47 @@ export class FileModel {
     } catch (error) {
       return { error: new Error('Something went wrong, please try again'), status: 500 }
     }
+  }
+
+  static async getYears(type: FileType): Promise<ReturnValue<Array<Number>>> {
+    if (type === FileType.RECEIVED) {
+      try {
+        const dates = await prisma.documentosRecibidos.findMany({
+          distinct: ['fecha_oficio'],
+          select: {
+            fecha_oficio: true
+          }
+        })
+        await prisma.$disconnect()
+
+        const years = getYearsFromDates(dates)
+
+        return { data: years }
+      } catch (error) {
+        await prisma.$disconnect()
+        return { error: new Error('Error retrieving years of files'), status: 500 }
+      }
+    }
+
+    if (type === FileType.SENT) {
+      try {
+        const dates = await prisma.documentosEnviados.findMany({
+          distinct: ['fecha_oficio'],
+          select: {
+            fecha_oficio: true
+          }
+        })
+        await prisma.$disconnect()
+
+        const years = getYearsFromDates(dates)
+
+        return { data: years }
+      } catch (error) {
+        await prisma.$disconnect()
+        return { error: new Error('Error retrieving years of files'), status: 500 }
+      }
+    }
+
+    return { error: new Error('Invalid file type'), status: 400 }
   }
 }

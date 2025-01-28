@@ -28,6 +28,7 @@ const upload = multer({ storage: storage })
 const router = Router()
 
 router.get('/files', FileController.getAll)
+router.get('/files/years', FileController.getFilesYears)
 router.get('/files/:id', FileController.getById)
 router.post('/files', upload.array('files'), FileController.create)
 router.put('/files/:id', upload.array('files'), FileController.update)
