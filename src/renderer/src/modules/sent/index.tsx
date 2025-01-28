@@ -3,7 +3,9 @@ import {
   ConfirmDialog,
   FilesTable,
   NavigationFAB,
-  ProgressBar
+  ProgressBar,
+  SearchBox,
+  SideSheetFilters
 } from '@renderer/components'
 import { FileType } from '@renderer/constants/file'
 import { AppRoutesEnum } from '@renderer/constants/routes'
@@ -11,6 +13,7 @@ import { columnsFileReceived } from '@renderer/constants/tableColumns'
 import { useConfirmDialog } from '@renderer/hooks/useConfirmDialog'
 import { useDeleteFile } from '@renderer/hooks/useDeleteFile'
 import { useFilesTable } from '@renderer/hooks/useFilesTable'
+import { useShowFiltersSheet, useYearFilter } from '@renderer/hooks/useFilters'
 import { useGetFiles } from '@renderer/hooks/useGetFiles'
 import { ContentScrollableLayout } from '@renderer/layouts/ContentScrollableLayout'
 import { MainLayout } from '@renderer/layouts/MainLayout'
@@ -48,6 +51,9 @@ export function Sent() {
     }
   })
 
+  const { open, handleOpen, handleClose } = useShowFiltersSheet({ refetchFiles })
+  const { year, changeYear } = useYearFilter()
+
   const [file, setFile] = useState<FileSent>()
   const {
     deleteFile,
@@ -79,6 +85,18 @@ export function Sent() {
         onAccept={onAccept}
         onClose={onClose}
       />
+
+      <SideSheetFilters
+        open={open}
+        table={table}
+        yearValue={year}
+        fileType={FileType.SENT}
+        handleClose={handleClose}
+        handleOpen={handleOpen}
+        setYearValue={changeYear}
+      />
+
+      <SearchBox table={table} openSideSheetFilters={handleOpen} type={FileType.SENT} year={year} />
 
       <ContentScrollableLayout>
         <FilesTable table={table} type={FileType.SENT} handleOpen={handleOpenDialog} />
