@@ -3,6 +3,7 @@ import { Box, Chip, MenuItem, Select, SwipeableDrawer } from '@mui/material'
 import { DatePicker } from '@mui/x-date-pickers'
 import { CustomButton } from '@renderer/components'
 import { FileType } from '@renderer/constants/file'
+import { useYears } from '@renderer/hooks/useYears'
 import { FileReceived, FileSent } from '@renderer/types/Files'
 import { Column, Table } from '@tanstack/react-table'
 
@@ -24,6 +25,7 @@ export function SideSheetFilters<T extends FileReceived | FileSent>({
   handleOpen: () => void
 }) {
   const column = table.getColumn('fecha_oficio')
+  const { data: years } = useYears(fileType)
 
   return (
     <SwipeableDrawer anchor="right" open={open} onClose={handleClose} onOpen={handleOpen}>
@@ -52,11 +54,7 @@ export function SideSheetFilters<T extends FileReceived | FileSent>({
 
         <SelectRowsNumber table={table} />
 
-        <SelectYearFiles
-          years={[2025, 2024, 2023]} // Change static values
-          yearValue={yearValue}
-          setYearValue={setYearValue}
-        />
+        <SelectYearFiles years={years} yearValue={yearValue} setYearValue={setYearValue} />
 
         <SelectDateRange column={column} />
       </Box>
