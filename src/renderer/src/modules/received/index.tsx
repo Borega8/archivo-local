@@ -4,6 +4,7 @@ import {
   FilesTable,
   NavigationFAB,
   ProgressBar,
+  SearchBox,
   SideSheetFilters
 } from '@renderer/components'
 import { FileType } from '@renderer/constants/file'
@@ -93,6 +94,13 @@ export function Received() {
         handleClose={handleClose}
         handleOpen={handleOpen}
         setYearValue={changeYear}
+      />
+
+      <SearchBox
+        table={table}
+        openSideSheetFilters={handleOpen}
+        type={FileType.RECEIVED}
+        year={year}
       />
 
       <ContentScrollableLayout>
