@@ -307,6 +307,6 @@ export class FileController {
     const { data, error, status } = await FileModel.getYears(type as FileType)
     if (error) return res.status(status).json({ error: error.message })
 
-    return res.json({ data })
+    return res.json(data)
   }
 }
