@@ -1,14 +1,30 @@
-import { AlertMessage, FilesTable, NavigationFAB, ProgressBar } from '@renderer/components'
+import {
+  AlertMessage,
+  ConfirmDialog,
+  FilesTable,
+  NavigationFAB,
+  ProgressBar
+} from '@renderer/components'
 import { FileType } from '@renderer/constants/file'
 import { AppRoutesEnum } from '@renderer/constants/routes'
 import { columnsFileReceived } from '@renderer/constants/tableColumns'
+import { useConfirmDialog } from '@renderer/hooks/useConfirmDialog'
+import { useDeleteFile } from '@renderer/hooks/useDeleteFile'
 import { useFilesTable } from '@renderer/hooks/useFilesTable'
 import { useGetFiles } from '@renderer/hooks/useGetFiles'
 import { ContentScrollableLayout } from '@renderer/layouts/ContentScrollableLayout'
 import { MainLayout } from '@renderer/layouts/MainLayout'
+import { FileReceived } from '@renderer/types/Files'
+import { useState } from 'react'
 
 export function Received() {
-  const { data: files, isFetching, isPending, error } = useGetFiles(FileType.RECEIVED)
+  const {
+    data: files,
+    isFetching,
+    isPending,
+    error,
+    refetch: refetchFiles
+  } = useGetFiles(FileType.RECEIVED)
 
   const { table } = useFilesTable({
     files,
@@ -32,16 +48,50 @@ export function Received() {
     }
   })
 
+  const [file, setFile] = useState<FileReceived>()
+  const {
+    deleteFile,
+    isPending: isDeletePending,
+    errorDeleteFile,
+    showAlert
+  } = useDeleteFile(file ? file.documento_id : 0, FileType.RECEIVED)
+
+  const {
+    open: isDialogOpen,
+    onAccept,
+    onClose,
+    openDialog
+  } = useConfirmDialog({
+    deleteFn: deleteFile,
+    refetch: refetchFiles
+  })
+
+  const handleOpenDialog = (file: FileReceived) => {
+    setFile(file)
+    openDialog()
+  }
+
   return (
     <MainLayout title="Documentos de entrada">
+      <ConfirmDialog
+        open={isDialogOpen}
+        name={file?.nombre}
+        onAccept={onAccept}
+        onClose={onClose}
+      />
+
       <ContentScrollableLayout>
-        <FilesTable table={table} type={FileType.RECEIVED} handleOpen={null} />
+        <FilesTable table={table} type={FileType.RECEIVED} handleOpen={handleOpenDialog} />
       </ContentScrollableLayout>
 
       <NavigationFAB to={AppRoutesEnum.NEW_RECEIVED} />
 
-      {(isFetching || isPending) && <ProgressBar />}
+      {(isFetching || isPending || isDeletePending) && <ProgressBar />}
       {error && <AlertMessage message={error.message} isError />}
+      {showAlert && errorDeleteFile && <AlertMessage message={errorDeleteFile.message} isError />}
+      {showAlert && !errorDeleteFile && (
+        <AlertMessage message="Archivo eliminado" isError={false} />
+      )}
     </MainLayout>
   )
 }
