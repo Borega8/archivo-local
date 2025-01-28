@@ -3,10 +3,10 @@ import { Box, Chip, MenuItem, Select, SwipeableDrawer } from '@mui/material'
 import { DatePicker } from '@mui/x-date-pickers'
 import { CustomButton } from '@renderer/components'
 import { FileType } from '@renderer/constants/file'
-import { FileReceived, FileSent, TFile } from '@renderer/types/Files'
+import { FileReceived, FileSent } from '@renderer/types/Files'
 import { Column, Table } from '@tanstack/react-table'
 
-export function SideSheetFilters({
+export function SideSheetFilters<T extends FileReceived | FileSent>({
   open,
   table,
   yearValue,
@@ -16,7 +16,7 @@ export function SideSheetFilters({
   setYearValue
 }: {
   open: boolean
-  table: Table<TFile>
+  table: Table<T>
   yearValue: number
   fileType: FileType
   setYearValue: (year: number) => void
