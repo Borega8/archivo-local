@@ -21,13 +21,15 @@ import { FileReceived } from '@renderer/types/Files'
 import { useState } from 'react'
 
 export function Received() {
+  const { year, changeYear } = useYearFilter()
+
   const {
     data: files,
     isFetching,
     isPending,
     error,
     refetch: refetchFiles
-  } = useGetFiles(FileType.RECEIVED)
+  } = useGetFiles(FileType.RECEIVED, year)
 
   const { table } = useFilesTable({
     files,
@@ -52,7 +54,6 @@ export function Received() {
   })
 
   const { open, handleOpen, handleClose } = useShowFiltersSheet({ refetchFiles })
-  const { year, changeYear } = useYearFilter()
 
   const [file, setFile] = useState<FileReceived>()
   const {
