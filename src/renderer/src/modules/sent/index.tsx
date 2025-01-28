@@ -5,7 +5,8 @@ import {
   NavigationFAB,
   ProgressBar,
   SearchBox,
-  SideSheetFilters
+  SideSheetFilters,
+  Pagination
 } from '@renderer/components'
 import { FileType } from '@renderer/constants/file'
 import { AppRoutesEnum } from '@renderer/constants/routes'
@@ -96,6 +97,8 @@ export function Sent() {
         handleOpen={handleOpen}
         setYearValue={changeYear}
       />
+
+      <Pagination table={table} />
 
       <SearchBox table={table} openSideSheetFilters={handleOpen} type={FileType.SENT} year={year} />
 
