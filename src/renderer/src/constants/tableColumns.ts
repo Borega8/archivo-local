@@ -1,4 +1,5 @@
 import { FileReceived, FileSent } from '@renderer/types/Files'
+import { filterFilesByDate } from '@renderer/utils/filterFiles'
 import { ColumnDef } from '@tanstack/react-table'
 
 export const columnsFileReceived: ColumnDef<FileReceived>[] = [
@@ -27,7 +28,8 @@ export const columnsFileReceived: ColumnDef<FileReceived>[] = [
   {
     header: 'Fecha del oficio',
     accessorKey: 'fecha_oficio',
-    minSize: 150
+    minSize: 150,
+    filterFn: filterFilesByDate
   },
   {
     header: 'Dirigido a',
@@ -103,7 +105,8 @@ export const columnsFileSent: ColumnDef<FileSent>[] = [
   {
     header: 'Fecha del oficio',
     accessorKey: 'fecha_oficio',
-    minSize: 150
+    minSize: 150,
+    filterFn: filterFilesByDate
   },
   {
     header: 'Dirigido a',
