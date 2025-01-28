@@ -3,6 +3,7 @@ import { FileModel } from '../models/file.model'
 import { FileType } from '../constants/file'
 import { TFile } from '../types/File'
 import { mkdir, rename } from 'node:fs'
+import { getYear } from 'date-fns'
 
 export class FileController {
   static async getById(req: Request, res: Response) {
@@ -14,8 +15,10 @@ export class FileController {
   }
 
   static async getAll(req: Request, res: Response) {
-    const { type } = req.query
-    const { data, error, status } = await FileModel.getAll(type as FileType)
+    const { type, year } = req.query
+
+    const yearString = year ? year.toString() : getYear(new Date()).toString()
+    const { data, error, status } = await FileModel.getAll(type as FileType, yearString)
 
     return error ? res.status(status).json({ error: error.message }) : res.status(200).json(data)
   }

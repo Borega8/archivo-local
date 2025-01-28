@@ -30,14 +30,22 @@ export class FileModel {
     }
   }
 
-  static async getAll(type: FileType): Promise<ReturnValue<TFile[]>> {
+  static async getAll(type: FileType, year: string): Promise<ReturnValue<TFile[]>> {
     try {
       if (type == FileType.RECEIVED) {
-        const files = await prisma.documentosRecibidos.findMany()
+        const files = await prisma.documentosRecibidos.findMany({
+          where: {
+            fecha_oficio: { contains: year }
+          }
+        })
 
         return { data: files as TFile[] }
       } else if (type == FileType.SENT) {
-        const files = await prisma.documentosEnviados.findMany()
+        const files = await prisma.documentosEnviados.findMany({
+          where: {
+            fecha_oficio: { contains: year }
+          }
+        })
 
         return { data: files as TFile[] }
       }
