@@ -1,4 +1,4 @@
-export type FileReceived = {
+type FileReceived = {
   documento_id: number
   nombre: string
   dependencia: string
@@ -18,7 +18,7 @@ export type FileReceived = {
   file_path: string
 }
 
-export type FileSent = {
+type FileSent = {
   documento_id: number
   nombre: string
   dependencia: string
@@ -30,6 +30,7 @@ export type FileSent = {
   quien_firma: string
   quien_elaboro: string
   fecha_recibido: string
+  fecha_enviado: string
   quien_recibe: string
   estado: string
   codigo_clasificacion: string
@@ -38,8 +39,8 @@ export type FileSent = {
   file_path: string
 }
 
-export type FilesJSON = {
+type FilesJSON = {
   files: FileReceived[] | FileSent[]
 }
 
-export type TFile = FileReceived | FileSent
+type TFile = FileReceived | FileSent
