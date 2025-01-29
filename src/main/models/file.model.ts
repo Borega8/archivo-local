@@ -91,6 +91,7 @@ export class FileModel {
             codigo_clasificacion: fileData.codigo_clasificacion,
             dependencia: fileData.dependencia,
             estado: fileData.estado,
+            fecha_envio: fileData.fecha_envio,
             fecha_oficio: fileData.fecha_oficio,
             fecha_recibido: fileData.fecha_recibido,
             file_path: fileData.file_path,

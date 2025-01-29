@@ -36,6 +36,7 @@ export class FileController {
       whoReceived,
       createdBy,
       dateReceived,
+      dateSent,
       turn,
       status,
       serieCode,
@@ -54,6 +55,7 @@ export class FileController {
       whoReceived: string
       createdBy: string
       dateReceived: string
+      dateSent: string
       turn: string
       status: string
       serieCode: string
@@ -103,6 +105,7 @@ export class FileController {
         codigo_clasificacion: serieCode,
         dependencia: dependency,
         estado: status,
+        fecha_envio: dateSent,
         fecha_oficio: dateFile,
         fecha_recibido: dateReceived,
         no_oficio: noFile,
@@ -138,6 +141,7 @@ export class FileController {
       whoReceived,
       createdBy,
       dateReceived,
+      dateSent,
       turn,
       status,
       serieCode,
@@ -156,6 +160,7 @@ export class FileController {
       whoReceived: string
       createdBy: string
       dateReceived: string
+      dateSent: string
       turn: string
       status: string
       serieCode: string
@@ -177,6 +182,7 @@ export class FileController {
           codigo_clasificacion: serieCode,
           dependencia: dependency,
           estado: status,
+          fecha_envio: dateSent,
           fecha_oficio: dateFile,
           fecha_recibido: dateReceived,
           no_oficio: noFile,
@@ -220,6 +226,7 @@ export class FileController {
           codigo_clasificacion: serieCode,
           dependencia: dependency,
           estado: status,
+          fecha_envio: dateSent,
           fecha_oficio: dateFile,
           fecha_recibido: dateReceived,
           no_oficio: noFile,
@@ -271,6 +278,7 @@ export class FileController {
         codigo_clasificacion: serieCode,
         dependencia: dependency,
         estado: status,
+        fecha_envio: dateSent,
         fecha_oficio: dateFile,
         fecha_recibido: dateReceived,
         no_oficio: noFile,
