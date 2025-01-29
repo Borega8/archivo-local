@@ -6,7 +6,6 @@ import {
   ProgressBar,
   InputFileField
 } from '@renderer/components'
-import { FileSent, TFile } from '@renderer/types/Files'
 import { useFileUpload } from '@hooks/useFileUpload'
 import { FileType } from '@renderer/constants/file'
 
@@ -69,7 +68,13 @@ export function DocSentForm({
         defaultValue={file?.quien_elaboro}
       />
       <DatePicker
-        label="Fecha de envío y recepción"
+        label="Fecha de envío"
+        sx={{ minWidth: '420px' }}
+        name="dateSent"
+        defaultValue={file?.fecha_enviado ? new Date(file.fecha_enviado) : null}
+      />
+      <DatePicker
+        label="Fecha de recepción"
         sx={{ minWidth: '420px' }}
         name="dateReceived"
         defaultValue={file?.fecha_recibido ? new Date(file.fecha_recibido) : null}
