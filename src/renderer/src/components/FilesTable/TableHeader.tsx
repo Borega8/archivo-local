@@ -1,6 +1,5 @@
 import { Header, HeaderGroup, flexRender } from '@tanstack/react-table'
 import { SwapVert } from '@mui/icons-material'
-import { TFile } from '@renderer/types/Files'
 
 export function TableHeader<T extends TFile>({ headerGroups }: { headerGroups: HeaderGroup<T>[] }) {
   return (

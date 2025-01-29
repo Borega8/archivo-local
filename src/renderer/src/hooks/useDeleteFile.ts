@@ -1,6 +1,5 @@
 import { FileType } from '@renderer/constants/file'
 import { SERVER_URL } from '@renderer/constants/routes'
-import { TFile } from '@renderer/types/Files'
 import { useMutation } from '@tanstack/react-query'
 import { useState } from 'react'
 

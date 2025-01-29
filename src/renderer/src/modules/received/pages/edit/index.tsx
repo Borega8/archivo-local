@@ -4,7 +4,6 @@ import { useEditFile } from '@renderer/hooks/useEditFile'
 import { useGetFile } from '@renderer/hooks/useGetFile'
 import { MainLayout } from '@renderer/layouts/MainLayout'
 import { DocReceivedForm } from '@renderer/modules/received/components'
-import { FileReceived } from '@renderer/types/Files'
 import { useParams } from 'react-router-dom'
 
 export function EditReceived() {

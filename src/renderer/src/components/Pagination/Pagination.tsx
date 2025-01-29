@@ -1,6 +1,5 @@
 import { ArrowBackIos, ArrowForwardIos } from '@mui/icons-material'
 import { Box, Button } from '@mui/material'
-import { FileReceived, FileSent } from '@renderer/types/Files'
 import { Table } from '@tanstack/react-table'
 
 export function Pagination<TTable extends FileReceived | FileSent>({

@@ -6,7 +6,6 @@ import {
   ProgressBar,
   InputFileField
 } from '@renderer/components'
-import { FileReceived, TFile } from '@renderer/types/Files'
 import { useFileUpload } from '@renderer/hooks/useFileUpload'
 import { FileType } from '@renderer/constants/file'
 

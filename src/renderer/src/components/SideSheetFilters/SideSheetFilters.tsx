@@ -4,7 +4,6 @@ import { DatePicker } from '@mui/x-date-pickers'
 import { CustomButton } from '@renderer/components'
 import { FileType } from '@renderer/constants/file'
 import { useYears } from '@renderer/hooks/useYears'
-import { FileReceived, FileSent } from '@renderer/types/Files'
 import { Column, Table } from '@tanstack/react-table'
 
 export function SideSheetFilters<T extends FileReceived | FileSent>({

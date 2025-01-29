@@ -1,4 +1,3 @@
-import { TFile } from '@renderer/types/Files'
 import { Cell, Row, flexRender } from '@tanstack/react-table'
 import { TableActions } from './TableActions'
 import { FileType } from '@renderer/constants/file'

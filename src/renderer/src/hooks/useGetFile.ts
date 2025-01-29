@@ -1,5 +1,4 @@
 import { SERVER_URL } from '@renderer/constants/routes'
-import { TFile } from '@renderer/types/Files'
 import { useQuery } from '@tanstack/react-query'
 
 const getFile = async (id: number, type: string): Promise<TFile> => {

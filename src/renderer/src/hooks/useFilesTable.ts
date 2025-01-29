@@ -1,4 +1,3 @@
-import { FileReceived, FileSent } from '@renderer/types/Files'
 import {
   SortingState,
   VisibilityState,

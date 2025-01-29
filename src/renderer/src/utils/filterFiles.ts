@@ -1,5 +1,4 @@
 import { dateFormatString } from '@renderer/constants/dateFormat'
-import { FileReceived, FileSent } from '@renderer/types/Files'
 import { Row } from '@tanstack/react-table'
 import { formatDate } from 'date-fns'
 

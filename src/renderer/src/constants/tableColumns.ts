@@ -1,4 +1,3 @@
-import { FileReceived, FileSent } from '@renderer/types/Files'
 import { filterFilesByDate } from '@renderer/utils/filterFiles'
 import { ColumnDef } from '@tanstack/react-table'
 

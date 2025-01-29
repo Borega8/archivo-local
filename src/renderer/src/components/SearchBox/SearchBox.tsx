@@ -2,7 +2,6 @@ import { Search, Tune } from '@mui/icons-material'
 import { Box, IconButton, InputBase } from '@mui/material'
 import { CustomAlert, CustomButton } from '@renderer/components'
 import { FileType } from '@renderer/constants/file'
-import { FileReceived, FileSent } from '@renderer/types/Files'
 import { Table } from '@tanstack/react-table'
 import { useState } from 'react'
 

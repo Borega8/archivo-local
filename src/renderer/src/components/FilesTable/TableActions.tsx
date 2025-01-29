@@ -2,7 +2,6 @@ import { Delete, Edit, OpenInNew } from '@mui/icons-material'
 import { IconButton } from '@mui/material'
 import { FileType } from '@renderer/constants/file'
 import { AppRoutesEnum } from '@renderer/constants/routes'
-import { TFile } from '@renderer/types/Files'
 import { useNavigate } from 'react-router-dom'
 
 export function TableActions({

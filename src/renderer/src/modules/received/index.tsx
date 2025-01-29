@@ -18,7 +18,6 @@ import { useShowFiltersSheet, useYearFilter } from '@renderer/hooks/useFilters'
 import { useGetFiles } from '@renderer/hooks/useGetFiles'
 import { ContentScrollableLayout } from '@renderer/layouts/ContentScrollableLayout'
 import { MainLayout } from '@renderer/layouts/MainLayout'
-import { FileReceived } from '@renderer/types/Files'
 import { useState } from 'react'
 
 export function Received() {
