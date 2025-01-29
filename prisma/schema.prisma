@@ -45,6 +45,7 @@ model DocumentosEnviados {
   atn                       String        
   quien_firma               String        
   quien_elaboro             String        
+  fecha_envio               String        
   fecha_recibido            String        
   quien_recibe              String        
   estado                    String        
