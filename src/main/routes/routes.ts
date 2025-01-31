@@ -5,6 +5,7 @@ import { mkdir } from 'node:fs'
 import { getYear } from 'date-fns'
 import { FileType } from '../constants/file'
 import { BASE_DIR } from '../constants/basedir'
+import { SerieController } from '../controllers/serie.controller'
 
 const storage = multer.diskStorage({
   destination: async (req, _, cb) => {
@@ -33,5 +34,10 @@ router.get('/files/:id', FileController.getById)
 router.post('/files', upload.array('files'), FileController.create)
 router.put('/files/:id', upload.array('files'), FileController.update)
 router.delete('/files/:id', FileController.deleteById)
+
+router.get('/series', SerieController.getAll)
+router.post('/series', upload.none(), SerieController.create)
+router.put('/series/:id', upload.none(), SerieController.update)
+router.delete('/series/:id', SerieController.deleteById)
 
 export default router
