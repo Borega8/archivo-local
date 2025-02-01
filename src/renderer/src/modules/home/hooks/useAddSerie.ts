@@ -24,7 +24,11 @@ export function useAddSerie({ refetchSeries }: UseAddSerieProps) {
 
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    const form = new FormData(e.currentTarget)
+    const form = new FormData()
+    const serie = e.currentTarget.serie.value
+
+    form.append('serie', serie.substring(0, serie.indexOf(' ')))
+    form.append('title', serie.substring(serie.indexOf(' ') + 1))
 
     await mutateAsync(form)
     await refetchSeries()
