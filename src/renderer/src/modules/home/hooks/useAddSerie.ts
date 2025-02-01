@@ -2,7 +2,7 @@ import { SERVER_URL } from '@renderer/constants/routes'
 import { useMutation } from '@tanstack/react-query'
 import { useState } from 'react'
 
-const addSerie = async (formData: FormData): Promise<TFile> => {
+const addSerie = async (formData: FormData): Promise<Serie> => {
   const response = await fetch(`${SERVER_URL}/series`, {
     method: 'post',
     body: formData
