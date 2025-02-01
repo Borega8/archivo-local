@@ -1,6 +1,10 @@
 import { SERVER_URL } from '@renderer/constants/routes'
-import { useMutation } from '@tanstack/react-query'
+import { QueryObserverResult, RefetchOptions, useMutation } from '@tanstack/react-query'
 import { useState } from 'react'
+
+type UseAddSerieProps = {
+  refetchSeries: (options?: RefetchOptions) => Promise<QueryObserverResult<Serie[], Error>>
+}
 
 const addSerie = async (formData: FormData): Promise<Serie> => {
   const response = await fetch(`${SERVER_URL}/series`, {
@@ -15,7 +19,7 @@ const addSerie = async (formData: FormData): Promise<Serie> => {
   return data
 }
 
-export function useAddSerie({ refetchSeries }) {
+export function useAddSerie({ refetchSeries }: UseAddSerieProps) {
   const [showAlert, setShowAlert] = useState(false)
 
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
