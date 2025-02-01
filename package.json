@@ -1,6 +1,6 @@
 {
   "name": "archivo-local",
-  "version": "0.14.0",
+  "version": "0.15.0",
   "description": "Gestión documental del archivo de trámite del municipio (local)",
   "main": "./out/main/index.js",
   "author": "Archivo Municipal de Uruapan",
