@@ -8,6 +8,8 @@ import {
 } from '@renderer/components'
 import { useFileUpload } from '@hooks/useFileUpload'
 import { FileType } from '@renderer/constants/file'
+import { useSeries } from '@renderer/hooks/useSeries'
+import { FormControl, InputLabel, MenuItem, Select } from '@mui/material'
 
 export function DocSentForm({
   file,
@@ -17,6 +19,7 @@ export function DocSentForm({
   onSubmit?: (e: React.FormEvent<HTMLFormElement>) => Promise<TFile>
 }) {
   const { isError, errorUploadFile, isPending, showAlert, uploadFile } = useFileUpload()
+  const { data: series } = useSeries()
 
   return (
     <form onSubmit={onSubmit ? onSubmit : uploadFile} encType="multipart/form-data">
@@ -91,13 +94,22 @@ export function DocSentForm({
         name="status"
         defaultValue={file?.estado}
       />
-      <CustomTextField
-        label="Código de clasificación archivística"
-        variant="outlined"
-        name="serieCode"
-        defaultValue={file?.codigo_clasificacion}
-        required
-      />
+      <FormControl sx={{ minWidth: '420px' }}>
+        <InputLabel id="label-series">Código de clasificación archivística</InputLabel>
+        <Select
+          labelId="label-series"
+          label="Código de clasificación archivística"
+          name="serieCode"
+          defaultValue={file?.codigo_clasificacion}
+          required
+        >
+          {series?.map((serie) => (
+            <MenuItem value={`${serie.serie} ${serie.titulo}`} key={serie.serie}>
+              {serie.serie} {serie.titulo}
+            </MenuItem>
+          ))}
+        </Select>
+      </FormControl>
       <CustomTextField
         label="Ubicación"
         variant="outlined"
