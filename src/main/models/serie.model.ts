@@ -5,7 +5,7 @@ import { SeriesCalisificacion } from '@local/prisma/client'
 export class SerieModel {
   static async getAll(): Promise<ReturnValue<SeriesCalisificacion[]>> {
     try {
-      const series = await prisma.seriesCalisificacion.findMany()
+      const series = await prisma.seriesCalisificacion.findMany({ orderBy: { serie: 'asc' } })
 
       return { data: series }
     } catch (error) {
