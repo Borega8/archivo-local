@@ -9,7 +9,9 @@ import {
 import { useFileUpload } from '@renderer/hooks/useFileUpload'
 import { FileType } from '@renderer/constants/file'
 import { useSeries } from '@renderer/hooks/useSeries'
-import { FormControl, InputLabel, MenuItem, Select } from '@mui/material'
+import { Autocomplete, FormControl, InputLabel, MenuItem, Select } from '@mui/material'
+import { useGetAutocomplete } from '@renderer/hooks/useGetAutocomplete'
+import { Fields } from '@renderer/constants/fieldsAutocomplete'
 
 export function DocReceivedForm({
   file,
@@ -20,6 +22,7 @@ export function DocReceivedForm({
 }) {
   const { errorUploadFile, isError, isPending, showAlert, uploadFile } = useFileUpload()
   const { data: series } = useSeries()
+  const { data: fields } = useGetAutocomplete()
 
   return (
     <form onSubmit={onSubmit ? onSubmit : uploadFile} encType="multipart/form-data">
@@ -32,11 +35,17 @@ export function DocReceivedForm({
         required
         autoFocus
       />
-      <CustomTextField
-        label="Dependencia"
-        variant="outlined"
-        name="dependency"
+      <Autocomplete
+        freeSolo
         defaultValue={file?.dependencia}
+        options={
+          fields
+            ?.filter((field) => field.campo === Fields.dependency)
+            .map((f) => f.valor.toString()) || ['']
+        }
+        renderInput={(params) => (
+          <CustomTextField {...params} label="Dependencia" name="dependency" />
+        )}
       />
       <CustomTextField
         label="No. de Oficio"
@@ -56,19 +65,47 @@ export function DocReceivedForm({
         name="dateFile"
         defaultValue={file?.fecha_oficio ? new Date(file.fecha_oficio) : null}
       />
-      <CustomTextField label="Dirigido a" variant="outlined" name="to" defaultValue={file?.para} />
-      <CustomTextField label="Con at'n a" variant="outlined" name="atn" defaultValue={file?.atn} />
-      <CustomTextField
-        label="Firma"
-        variant="outlined"
-        name="whoSigns"
-        defaultValue={file?.quien_firma}
+      <Autocomplete
+        freeSolo
+        defaultValue={file?.para}
+        options={
+          fields?.filter((field) => field.campo === Fields.to).map((f) => f.valor.toString()) || [
+            ''
+          ]
+        }
+        renderInput={(params) => <CustomTextField {...params} label="Dirigido a" name="to" />}
       />
-      <CustomTextField
-        label="Quién recibe"
-        variant="outlined"
-        name="whoReceived"
+      <Autocomplete
+        freeSolo
+        defaultValue={file?.atn}
+        options={
+          fields?.filter((field) => field.campo === Fields.atn).map((f) => f.valor.toString()) || [
+            ''
+          ]
+        }
+        renderInput={(params) => <CustomTextField {...params} label="Con at'n a" name="atn" />}
+      />
+      <Autocomplete
+        freeSolo
+        defaultValue={file?.quien_firma}
+        options={
+          fields
+            ?.filter((field) => field.campo === Fields.whoSigns)
+            .map((f) => f.valor.toString()) || ['']
+        }
+        renderInput={(params) => <CustomTextField {...params} label="Firma" name="whoSigns" />}
+      />
+      <Autocomplete
+        freeSolo
         defaultValue={file?.quien_recibe}
+        options={
+          fields
+            ?.filter((field) => field.campo === Fields.whoReceived)
+            .map((f) => f.valor.toString()) || ['']
+        }
+        renderInput={(params) => (
+          <CustomTextField {...params} label="Quién recibe" name="whoReceived" />
+        )}
       />
       <DatePicker
         label="Fecha de Recepción"
@@ -76,17 +113,25 @@ export function DocReceivedForm({
         name="dateReceived"
         defaultValue={file?.fecha_recibido ? new Date(file.fecha_recibido) : null}
       />
-      <CustomTextField
-        label="Turnado"
-        variant="outlined"
-        name="turn"
+      <Autocomplete
+        freeSolo
         defaultValue={file?.turnado}
+        options={
+          fields?.filter((field) => field.campo === Fields.turn).map((f) => f.valor.toString()) || [
+            ''
+          ]
+        }
+        renderInput={(params) => <CustomTextField {...params} label="Turnado" name="turn" />}
       />
-      <CustomTextField
-        label="Estatus"
-        variant="outlined"
-        name="status"
+      <Autocomplete
+        freeSolo
         defaultValue={file?.estado}
+        options={
+          fields
+            ?.filter((field) => field.campo === Fields.status)
+            .map((f) => f.valor.toString()) || ['']
+        }
+        renderInput={(params) => <CustomTextField {...params} label="Estatus" name="status" />}
       />
       <FormControl sx={{ minWidth: '420px' }}>
         <InputLabel id="label-series">Código de clasificación archivística</InputLabel>
@@ -104,11 +149,15 @@ export function DocReceivedForm({
           ))}
         </Select>
       </FormControl>
-      <CustomTextField
-        label="Ubicación"
-        variant="outlined"
-        name="location"
+      <Autocomplete
+        freeSolo
         defaultValue={file?.ubicacion}
+        options={
+          fields
+            ?.filter((field) => field.campo === Fields.location)
+            .map((f) => f.valor.toString()) || ['']
+        }
+        renderInput={(params) => <CustomTextField {...params} label="Ubicación" name="location" />}
       />
       <CustomTextField
         label="Observaciones"
