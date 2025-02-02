@@ -6,6 +6,7 @@ import { getYear } from 'date-fns'
 import { FileType } from '../constants/file'
 import { BASE_DIR } from '../constants/basedir'
 import { SerieController } from '../controllers/serie.controller'
+import { AutocompleteFieldController } from '../controllers/field.controller'
 
 const storage = multer.diskStorage({
   destination: async (req, _, cb) => {
@@ -39,5 +40,9 @@ router.get('/series', SerieController.getAll)
 router.post('/series', upload.none(), SerieController.create)
 router.put('/series/:id', upload.none(), SerieController.update)
 router.delete('/series/:id', SerieController.deleteById)
+
+router.get('/fields', AutocompleteFieldController.getAll)
+router.post('/fields', upload.none(), AutocompleteFieldController.create)
+router.delete('/fields/:id', AutocompleteFieldController.deleteById)
 
 export default router
