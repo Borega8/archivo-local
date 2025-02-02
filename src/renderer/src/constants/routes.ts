@@ -1,3 +1,4 @@
+import Config from '@renderer/modules/config'
 import { Home } from '@renderer/modules/home'
 import { Received } from '@renderer/modules/received'
 import { NewReceived } from '@renderer/modules/received/pages/create'
@@ -10,6 +11,7 @@ export enum AppRoutesEnum {
   HOME = '/',
   RECEIVED = '/received',
   SENT = '/sent',
+  CONFIG = '/config',
 
   NEW_RECEIVED = `${RECEIVED}/new`,
   NEW_SENT = `${SENT}/new`,
@@ -27,6 +29,7 @@ export const AppRoutes: AppRoutesType[] = [
   { path: AppRoutesEnum.HOME, element: Home },
   { path: AppRoutesEnum.RECEIVED, element: Received },
   { path: AppRoutesEnum.SENT, element: Sent },
+  { path: AppRoutesEnum.CONFIG, element: Config },
   { path: AppRoutesEnum.NEW_RECEIVED, element: NewReceived },
   { path: AppRoutesEnum.NEW_SENT, element: NewSent },
   { path: AppRoutesEnum.EDIT_RECEIVED, element: EditReceived },

@@ -7,7 +7,9 @@ import {
   Input,
   InputOutlined,
   Output,
-  OutputOutlined
+  OutputOutlined,
+  Settings,
+  SettingsOutlined
 } from '@mui/icons-material'
 import { AppRoutesEnum } from '@renderer/constants/routes'
 
@@ -41,6 +43,13 @@ export function NavigationRail() {
           label="Enviados"
           iconActive={<Output />}
           iconInactive={<OutputOutlined />}
+        />
+        <NavigationElement
+          currentPath={currentPath.slice(1)}
+          to={AppRoutesEnum.CONFIG}
+          label="Config"
+          iconActive={<Settings />}
+          iconInactive={<SettingsOutlined />}
         />
       </section>
     </nav>
