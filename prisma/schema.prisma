@@ -54,3 +54,9 @@ model DocumentosEnviados {
   observaciones             String        
   file_path                 String        
 }
+
+model Autocompletado {
+  autocompletado_id         Int             @id @default(autoincrement())
+  campo                     String
+  valor                     String
+}
