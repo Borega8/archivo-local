@@ -6,7 +6,7 @@ export class AutocompleteFieldModel {
   static async getAll(): Promise<ReturnValue<Autocompletado[]>> {
     try {
       const fields = await prisma.autocompletado.findMany({
-        orderBy: { campo: 'asc', valor: 'asc' }
+        orderBy: { campo: 'asc' }
       })
 
       return { data: fields }
