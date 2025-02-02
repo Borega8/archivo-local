@@ -34,7 +34,7 @@ export function Home() {
   }
 
   return (
-    <MainLayout title="Inicio">
+    <MainLayout title="Códigos de clasificación archivística">
       <ConfirmDialog
         open={isDialogOpen}
         name={`${serie?.serie} ${serie?.titulo}`}
