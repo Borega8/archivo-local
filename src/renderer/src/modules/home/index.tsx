@@ -3,7 +3,7 @@ import { AlertMessage, ConfirmDialog, CustomFAB, ProgressBar } from '@renderer/c
 import { MainLayout } from '@renderer/layouts/MainLayout'
 import { CreateSerieDialog } from './components'
 import { Fragment, useState } from 'react'
-import { useSeries } from '@renderer/modules/home/hooks/useSeries'
+import { useSeries } from '@renderer/hooks/useSeries'
 import { Divider, IconButton, ListItem, ListItemIcon, ListItemText } from '@mui/material'
 import { useConfirmDialog } from '@renderer/hooks/useConfirmDialog'
 import { useDeleteSerie } from './hooks/useDeleteSerie'
