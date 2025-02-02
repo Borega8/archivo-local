@@ -11,6 +11,7 @@ import {
 import { AlertMessage, CustomButton, CustomTextField, ProgressBar } from '@renderer/components'
 import { QueryObserverResult, RefetchOptions } from '@tanstack/react-query'
 import { useAddAutocomplete } from '@renderer/modules/config/hooks/useAddAutocomplete'
+import { fieldsArray } from '@renderer/constants/fieldsAutocomplete'
 
 type CreateAutocompleteDialogProps = {
   open: boolean
@@ -19,18 +20,6 @@ type CreateAutocompleteDialogProps = {
     options?: RefetchOptions
   ) => Promise<QueryObserverResult<FieldValue[], Error>>
 }
-
-const FIELDS = [
-  'Elaboró',
-  'Dependencia',
-  'Ubicación',
-  'Estatus',
-  'Turnado',
-  'Quién recibe',
-  'Firma',
-  'Dirigido a',
-  'Cont atn a'
-]
 
 export function CreateAutocompleteDialog({
   open,
@@ -54,8 +43,8 @@ export function CreateAutocompleteDialog({
       >
         <FormControl sx={{ minWidth: '420px', marginTop: '8px' }}>
           <InputLabel id="label-series">Campo</InputLabel>
-          <Select label="Campo" name="field" defaultValue={FIELDS[0]} required>
-            {FIELDS.map((field, index) => (
+          <Select label="Campo" name="field" defaultValue={fieldsArray[0]} required>
+            {fieldsArray.map((field, index) => (
               <MenuItem value={`${field}`} key={index}>
                 {field}
               </MenuItem>
