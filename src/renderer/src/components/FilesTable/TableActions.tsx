@@ -59,8 +59,7 @@ function TableActionOpen({ url }: { url: string }) {
   return (
     <IconButton
       onClick={() => {
-        // window.electron.ipcRenderer.send('open-file', url)
-        open(url, '_blank')
+        window.electron.ipcRenderer.send('open-file', url)
       }}
     >
       <OpenInNew sx={{ color: 'var(--md-sys-color-scrim)' }} />

@@ -1,4 +1,4 @@
-import { app, BrowserWindow, ipcMain } from 'electron'
+import { app, BrowserWindow, ipcMain, shell } from 'electron'
 import { electronApp, optimizer } from '@electron-toolkit/utils'
 import createWindow from './utils/createWindow'
 import server from './config/express'
@@ -7,6 +7,7 @@ import { mkdir } from 'node:fs'
 import { FileModel } from './models/file.model'
 import XlsxPopulate from 'xlsx-populate'
 import { DocumentosEnviados, DocumentosRecibidos } from '@local/prisma/client'
+import { pathToFileURL } from 'node:url'
 
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
@@ -16,6 +17,11 @@ app.whenReady().then(() => {
 
   app.on('browser-window-created', (_, window) => {
     optimizer.watchWindowShortcuts(window)
+  })
+
+  ipcMain.on('open-file', (_, args) => {
+    const path = pathToFileURL(args)
+    shell.openPath(path.href)
   })
 
   ipcMain.on('export', async (ev, args: [FileType, number]) => {
