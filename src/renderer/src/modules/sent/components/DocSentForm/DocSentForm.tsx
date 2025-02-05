@@ -12,6 +12,7 @@ import { useSeries } from '@renderer/hooks/useSeries'
 import { Autocomplete, FormControl, InputLabel, MenuItem, Select } from '@mui/material'
 import { useGetAutocomplete } from '@renderer/hooks/useGetAutocomplete'
 import { Fields } from '@renderer/constants/fieldsAutocomplete'
+import { useState } from 'react'
 
 export function DocSentForm({
   file,
@@ -23,6 +24,7 @@ export function DocSentForm({
   const { isError, errorUploadFile, isPending, showAlert, uploadFile } = useFileUpload()
   const { data: series } = useSeries()
   const { data: fields } = useGetAutocomplete()
+  const [serie, setSerie] = useState('')
 
   return (
     <form onSubmit={onSubmit ? onSubmit : uploadFile} encType="multipart/form-data">
@@ -145,7 +147,8 @@ export function DocSentForm({
           labelId="label-series"
           label="Código de clasificación archivística"
           name="serieCode"
-          defaultValue={file?.codigo_clasificacion}
+          value={file?.codigo_clasificacion || serie}
+          onChange={(e) => setSerie(e.target.value)}
           required
         >
           {series?.map((serie) => (
@@ -160,8 +163,11 @@ export function DocSentForm({
         defaultValue={file?.ubicacion}
         options={
           fields
-            ?.filter((field) => field.campo === Fields.location)
-            .map((f) => f.valor.toString()) || ['']
+            ?.filter(
+              (field) =>
+                field.campo === Fields.location && field.valor.startsWith(serie.split(' ')[0])
+            )
+            .map((field) => field.valor) || ['']
         }
         renderInput={(params) => <CustomTextField {...params} label="Ubicación" name="location" />}
       />
