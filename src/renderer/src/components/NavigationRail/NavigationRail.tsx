@@ -47,7 +47,7 @@ export function NavigationRail() {
         <NavigationElement
           currentPath={currentPath.slice(1)}
           to={AppRoutesEnum.CONFIG}
-          label="Config"
+          label="Ajustes"
           iconActive={<Settings />}
           iconInactive={<SettingsOutlined />}
         />
