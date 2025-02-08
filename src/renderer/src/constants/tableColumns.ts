@@ -45,7 +45,7 @@ export const columnsFileReceived: ColumnDef<FileReceived>[] = [
   },
   {
     header: 'Quien recibe',
-    accessorKey: 'who_received',
+    accessorKey: 'quien_recibe',
     minSize: 130
   },
   {
@@ -131,7 +131,7 @@ export const columnsFileSent: ColumnDef<FileSent>[] = [
   },
   {
     header: 'Quién recibe',
-    accessorKey: 'who_received',
+    accessorKey: 'quien_recibe',
     minSize: 130
   },
   {
