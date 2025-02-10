@@ -1,5 +1,7 @@
 import { filterFilesByDate } from '@renderer/utils/filterFiles'
 import { ColumnDef } from '@tanstack/react-table'
+import { formatDate } from 'date-fns'
+import { dateFormatString } from './dateFormat'
 
 export const columnsFileReceived: ColumnDef<FileReceived>[] = [
   {
@@ -27,6 +29,8 @@ export const columnsFileReceived: ColumnDef<FileReceived>[] = [
   {
     header: 'Fecha del oficio',
     accessorKey: 'fecha_oficio',
+    accessorFn: (documentData: FileReceived, _: number) =>
+      formatDate(documentData.fecha_oficio, "dd'/'LL'/'u"),
     minSize: 150,
     filterFn: filterFilesByDate
   },
@@ -51,6 +55,8 @@ export const columnsFileReceived: ColumnDef<FileReceived>[] = [
   {
     header: 'Fecha de recepcion',
     accessorKey: 'fecha_recibido',
+    accessorFn: (documentData: FileReceived, _: number) =>
+      documentData.fecha_recibido ? formatDate(documentData.fecha_recibido, "dd'/'LL'/'u") : '',
     minSize: 175
   },
   {
@@ -104,6 +110,8 @@ export const columnsFileSent: ColumnDef<FileSent>[] = [
   {
     header: 'Fecha del oficio',
     accessorKey: 'fecha_oficio',
+    accessorFn: (documentData: FileSent, _: number) =>
+      formatDate(documentData.fecha_oficio, "dd'/'LL'/'u"),
     minSize: 150,
     filterFn: filterFilesByDate
   },
@@ -127,11 +135,15 @@ export const columnsFileSent: ColumnDef<FileSent>[] = [
   {
     header: 'Fecha de envío',
     accessorKey: 'fecha_envio',
+    accessorFn: (documentData: FileSent, _: number) =>
+      documentData.fecha_envio ? formatDate(documentData.fecha_envio, "dd'/'LL'/'u") : '',
     minSize: 175
   },
   {
     header: 'Fecha de recepcion',
     accessorKey: 'fecha_recibido',
+    accessorFn: (documentData: FileSent, _: number) =>
+      documentData.fecha_recibido ? formatDate(documentData.fecha_recibido, "dd'/'LL'/'u") : '',
     minSize: 175
   },
   {
