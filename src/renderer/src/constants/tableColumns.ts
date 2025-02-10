@@ -125,6 +125,11 @@ export const columnsFileSent: ColumnDef<FileSent>[] = [
     accessorKey: 'quien_elaboro'
   },
   {
+    header: 'Fecha de envío',
+    accessorKey: 'fecha_envio',
+    minSize: 175
+  },
+  {
     header: 'Fecha de recepcion',
     accessorKey: 'fecha_recibido',
     minSize: 175

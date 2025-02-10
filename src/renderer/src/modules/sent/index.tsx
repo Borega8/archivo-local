@@ -10,7 +10,7 @@ import {
 } from '@renderer/components'
 import { FileType } from '@renderer/constants/file'
 import { AppRoutesEnum } from '@renderer/constants/routes'
-import { columnsFileReceived } from '@renderer/constants/tableColumns'
+import { columnsFileSent } from '@renderer/constants/tableColumns'
 import { useConfirmDialog } from '@renderer/hooks/useConfirmDialog'
 import { useDeleteFile } from '@renderer/hooks/useDeleteFile'
 import { useFilesTable } from '@renderer/hooks/useFilesTable'
@@ -33,7 +33,7 @@ export function Sent() {
 
   const { table } = useFilesTable({
     files,
-    columnDef: columnsFileReceived,
+    columnDef: columnsFileSent,
     columnVisibitily: {
       ['name']: true,
       ['dependency']: true,
@@ -46,6 +46,7 @@ export function Sent() {
       ['created_by']: true,
       ['who_received']: true,
       ['date_received']: true,
+      ['date_sent']: true,
       ['status']: true,
       ['serie_code']: true,
       ['location']: true,
