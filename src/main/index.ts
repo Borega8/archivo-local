@@ -8,6 +8,7 @@ import { FileModel } from './models/file.model'
 import XlsxPopulate from 'xlsx-populate'
 import { DocumentosEnviados, DocumentosRecibidos } from '@local/prisma/client'
 import { pathToFileURL } from 'node:url'
+import { formatDate } from 'date-fns'
 
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
@@ -67,12 +68,12 @@ app.whenReady().then(() => {
               file.dependencia,
               file.no_oficio,
               file.asunto,
-              file.fecha_oficio,
+              formatDate(file.fecha_oficio, "dd'/'LL'/'u"),
               file.para,
               file.atn,
               file.quien_firma,
               file.quien_recibe,
-              file.fecha_recibido,
+              file.fecha_recibido ? formatDate(file.fecha_oficio, "dd'/'LL'/'u") : null,
               file.turnado,
               file.estado,
               file.codigo_clasificacion,
@@ -129,13 +130,14 @@ app.whenReady().then(() => {
               file.dependencia,
               file.no_oficio,
               file.asunto,
-              file.fecha_oficio,
+              formatDate(file.fecha_oficio, "dd'/'LL'/'u"),
+
               file.para,
               file.atn,
               file.quien_firma,
               file.quien_elaboro,
-              file.fecha_envio,
-              file.fecha_recibido,
+              file.fecha_envio ? formatDate(file.fecha_envio, "dd'/'LL'/'u") : null,
+              file.fecha_recibido ? formatDate(file.fecha_recibido, "dd'/'LL'/'u") : null,
               file.quien_recibe,
               file.estado,
               file.codigo_clasificacion,
