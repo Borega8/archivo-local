@@ -30,7 +30,7 @@ type FileSent = {
   quien_firma: string
   quien_elaboro: string
   fecha_recibido: string
-  fecha_enviado: string
+  fecha_envio: string
   quien_recibe: string
   estado: string
   codigo_clasificacion: string
