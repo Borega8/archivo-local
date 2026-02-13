@@ -2,7 +2,8 @@ import { Router } from 'express'
 import { FileController } from '../controllers/file.controller'
 import multer from 'multer'
 import { mkdir } from 'node:fs'
-import { getYear } from 'date-fns'
+import { format, getYear } from 'date-fns'
+import { es } from 'date-fns/locale'
 import { FileType } from '../constants/file'
 import { BASE_DIR } from '../constants/basedir'
 import { SerieController } from '../controllers/serie.controller'
@@ -11,17 +12,19 @@ import { AutocompleteFieldController } from '../controllers/field.controller'
 const storage = multer.diskStorage({
   destination: async (req, _, cb) => {
     const year = getYear(req.body.dateFile)
+    const month = format(req.body.dateFile.split('/')[0], 'MMMM', { locale: es }).toUpperCase()
     const type: string = req.body.type
 
     mkdir(`${BASE_DIR}`, (err) => err)
     mkdir(`${BASE_DIR}/${year}`, (err) => err)
+    mkdir(`${BASE_DIR}/${year}/${month}`, (err) => err)
 
     if (type === FileType.RECEIVED) {
-      mkdir(`${BASE_DIR}/${year}/DOCUMENTOS DE ENTRADA`, (err) => err)
-      cb(null, `${BASE_DIR}/${year}/DOCUMENTOS DE ENTRADA`)
+      mkdir(`${BASE_DIR}/${year}/${month}/DOCUMENTOS DE ENTRADA`, (err) => err)
+      cb(null, `${BASE_DIR}/${year}/${month}/DOCUMENTOS DE ENTRADA`)
     } else {
-      mkdir(`${BASE_DIR}/${year}/DOCUMENTOS DE SALIDA`, (err) => err)
-      cb(null, `${BASE_DIR}/${year}/DOCUMENTOS DE SALIDA`)
+      mkdir(`${BASE_DIR}/${year}/${month}/DOCUMENTOS DE SALIDA`, (err) => err)
+      cb(null, `${BASE_DIR}/${year}/${month}/DOCUMENTOS DE SALIDA`)
     }
   }
 })
