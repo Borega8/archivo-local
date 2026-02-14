@@ -1,11 +1,12 @@
 generator client {
   provider = "prisma-client-js"
   output   = "../node_modules/@local/prisma/client"
+  engineType = "library"
 }
 
 datasource db {
   provider = "sqlite"
-  url      = "file:../data/local.db"
+  url      = env("DATABASE_URL")
 }
 
 model SeriesCalisificacion {
