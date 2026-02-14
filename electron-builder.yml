@@ -11,7 +11,11 @@ files:
   - '!{tsconfig.json,tsconfig.node.json,tsconfig.web.json}'
   - '!node_modules/@local/prisma/client'
 extraResources:
-  ['node_modules/@local/prisma/client', { from: 'data', to: 'node_modules/@local/prisma/data' }]
+  [
+    'node_modules/@local/prisma/client',
+    { from: 'data', to: 'node_modules/@local/prisma/data' },
+    { from: 'resources/template.db', to: 'template.db' }
+  ]
 asarUnpack:
   - resources/**
 win:
