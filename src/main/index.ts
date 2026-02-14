@@ -9,6 +9,38 @@ import XlsxPopulate from 'xlsx-populate'
 import { DocumentosEnviados, DocumentosRecibidos } from '@local/prisma/client'
 import { pathToFileURL } from 'node:url'
 import { formatDate } from 'date-fns'
+import path from 'node:path'
+import fs from 'node:fs'
+import { getDatabasePath, initializeDB } from './constants/database'
+
+function setupDatabaseFile() {
+  const dbPath = getDatabasePath()
+
+  // Si la DB ya existe, no hacemos nada
+  if (fs.existsSync(dbPath)) {
+    console.log('Base de datos encontrada en:', dbPath)
+    return
+  }
+
+  // Si no existe, copiamos desde los recursos de la app
+  // En desarrollo:
+  let sourcePath = path.join(__dirname, '../../resources/template.db')
+  
+  // En producción:
+  if (app.isPackaged) {
+    sourcePath = path.join(process.resourcesPath, 'template.db')
+  }
+
+  try {
+    fs.copyFileSync(sourcePath, dbPath)
+    console.log('Base de datos creada exitosamente desde plantilla.')
+  } catch (error) {
+    console.error('Error al copiar la base de datos:', error)
+  }
+}
+
+setupDatabaseFile()
+initializeDB()
 
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
