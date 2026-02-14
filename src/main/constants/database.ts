@@ -12,7 +12,7 @@ export function getDatabasePath() {
     fs.mkdirSync(userDataPath, { recursive: true })
   }
 
-  const dbPath = path.join(userDataPath, 'database.sqlite')
+  const dbPath = path.join(userDataPath, 'local.db')
   return dbPath
 }
 
