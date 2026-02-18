@@ -8,10 +8,11 @@ import { FileModel } from './models/file.model'
 import XlsxPopulate from 'xlsx-populate'
 import { DocumentosEnviados, DocumentosRecibidos } from '@local/prisma/client'
 import { pathToFileURL } from 'node:url'
-import { formatDate } from 'date-fns'
+import { format, formatDate } from 'date-fns'
 import path from 'node:path'
 import fs from 'node:fs'
 import { getDatabasePath, initializeDB } from './constants/database'
+import { es } from 'date-fns/locale'
 
 function setupDatabaseFile() {
   const dbPath = getDatabasePath()
@@ -116,12 +117,15 @@ app.whenReady().then(() => {
         ])
 
       data.map((file, index) => {
+      const month = format(file.fecha_oficio.split('/')[0], 'MMMM', { locale: es }).toUpperCase()
+
         book
           .sheet(0)
           .cell(`A${index + 2}`)
           .value(file.nombre)
-          .hyperlink(`./DOCUMENTOS DE ENTRADA/${file.file_path.split('/').pop()}`)
+          .hyperlink(`./${month}/DOCUMENTOS DE ENTRADA/${file.file_path.split('/').pop()}`)
       })
+
 
       book.toFileAsync(
         `${process.env.USERPROFILE?.replaceAll('\\', '/')}/ARCHIVO MUNICIPAL/${args[1]}/RECIBIDOS ${args[1]}.xlsx`
@@ -180,11 +184,13 @@ app.whenReady().then(() => {
         ])
 
       data.map((file, index) => {
+      const month = format(file.fecha_oficio.split('/')[0], 'MMMM', { locale: es }).toUpperCase()
+
         book
           .sheet(0)
           .cell(`A${index + 2}`)
           .value(file.nombre)
-          .hyperlink(`./DOCUMENTOS DE SALIDA/${file.file_path.split('/').pop()}`)
+          .hyperlink(`./${month}/DOCUMENTOS DE SALIDA/${file.file_path.split('/').pop()}`)
       })
 
       book.toFileAsync(
