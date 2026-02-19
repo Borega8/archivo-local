@@ -117,7 +117,7 @@ app.whenReady().then(() => {
         ])
 
       data.map((file, index) => {
-      const month = format(file.fecha_oficio.split('/')[0], 'MMMM', { locale: es }).toUpperCase()
+      const month = format(file.fecha_recibido.split('/')[0], 'MMMM', { locale: es }).toUpperCase()
 
         book
           .sheet(0)
@@ -184,7 +184,7 @@ app.whenReady().then(() => {
         ])
 
       data.map((file, index) => {
-      const month = format(file.fecha_oficio.split('/')[0], 'MMMM', { locale: es }).toUpperCase()
+      const month = format(file.fecha_recibido.split('/')[0], 'MMMM', { locale: es }).toUpperCase()
 
         book
           .sheet(0)
