@@ -128,12 +128,12 @@ app.whenReady().then(() => {
 
 
       book.toFileAsync(
-        `${process.env.USERPROFILE?.replaceAll('\\', '/')}/ARCHIVO MUNICIPAL/${args[1]}/RECIBIDOS ${args[1]}.xlsx`
+        `${process.env.USERPROFILE?.replaceAll('\\', '/')}/ARCHIVO MUNICIPAL/DIRECCION DE DESARROLLO RURAL ${args[1]}/RECIBIDOS ${args[1]}.xlsx`
       )
 
       ev.reply(
         'exported',
-        `${process.env.USERPROFILE?.replaceAll('\\', '/')}/ARCHIVO MUNICIPAL/${args[1]}/RECIBIDOS ${args[1]}.xlsx`
+        `${process.env.USERPROFILE?.replaceAll('\\', '/')}/ARCHIVO MUNICIPAL/DIRECCION DE DESARROLLO RURAL ${args[1]}/RECIBIDOS ${args[1]}.xlsx`
       )
 
       return
@@ -194,11 +194,11 @@ app.whenReady().then(() => {
       })
 
       book.toFileAsync(
-        `${process.env.USERPROFILE?.replaceAll('\\', '/')}/ARCHIVO MUNICIPAL/${args[1]}/ENVIADOS ${args[1]}.xlsx`
+        `${process.env.USERPROFILE?.replaceAll('\\', '/')}/ARCHIVO MUNICIPAL/DIRECCION DE DESARROLLO RURAL ${args[1]}/ENVIADOS ${args[1]}.xlsx`
       )
       ev.reply(
         'exported',
-        `${process.env.USERPROFILE?.replaceAll('\\', '/')}/ARCHIVO MUNICIPAL/${args[1]}/ENVIADOS ${args[1]}.xlsx`
+        `${process.env.USERPROFILE?.replaceAll('\\', '/')}/ARCHIVO MUNICIPAL/DIRECCION DE DESARROLLO RURAL ${args[1]}/ENVIADOS ${args[1]}.xlsx`
       )
     }
   })

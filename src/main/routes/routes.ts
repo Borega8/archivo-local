@@ -15,14 +15,16 @@ const storage = multer.diskStorage({
     const month = format(req.body.dateReceived.split('/')[0], 'MMMM', { locale: es }).toUpperCase()
     const type: string = req.body.type
 
-    await mkdir(`${BASE_DIR}/${year}/${month}`, { recursive: true })
+    const filePath = `${BASE_DIR}/DIRECCION DE DESARROLLO RURAL ${year}/${month}`
+
+    await mkdir(filePath, { recursive: true })
 
     if (type === FileType.RECEIVED) {
-      await mkdir(`${BASE_DIR}/${year}/${month}/DOCUMENTOS DE ENTRADA`,  {recursive: true })
-      cb(null, `${BASE_DIR}/${year}/${month}/DOCUMENTOS DE ENTRADA`)
+      await mkdir(`${filePath}/DOCUMENTOS DE ENTRADA`,  {recursive: true })
+      cb(null, `${filePath}/DOCUMENTOS DE ENTRADA`)
     } else {
-      await mkdir(`${BASE_DIR}/${year}/${month}/DOCUMENTOS DE SALIDA`, { recursive: true })
-      cb(null, `${BASE_DIR}/${year}/${month}/DOCUMENTOS DE SALIDA`)
+      await mkdir(`${filePath}/DOCUMENTOS DE SALIDA`, { recursive: true })
+      cb(null, `${filePath}/DOCUMENTOS DE SALIDA`)
     }
   }
 })
