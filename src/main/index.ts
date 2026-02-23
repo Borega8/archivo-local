@@ -124,7 +124,7 @@ app.whenReady().then(() => {
           .sheet(0)
           .cell(`A${index + 2}`)
           .value(file.nombre)
-          .hyperlink(`./${month}/${receivedFolder}/${file.file_path.split('/').pop()}`)
+          .hyperlink(`./${receivedFolder}/${month}/${file.file_path.split('/').pop()}`)
       })
 
 
@@ -191,7 +191,7 @@ app.whenReady().then(() => {
           .sheet(0)
           .cell(`A${index + 2}`)
           .value(file.nombre)
-          .hyperlink(`./${month}/${sentFolder}/${file.file_path.split('/').pop()}`)
+          .hyperlink(`./${sentFolder}/${month}/${file.file_path.split('/').pop()}`)
       })
 
       book.toFileAsync(

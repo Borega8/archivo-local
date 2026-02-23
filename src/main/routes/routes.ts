@@ -16,16 +16,16 @@ const storage = multer.diskStorage({
     const month = format(req.body.dateReceived.split('/')[0], 'MMMM', { locale: es }).toUpperCase()
     const type: string = req.body.type
 
-    const filePath = `${BASE_DIR}/DIRECCION DE DESARROLLO RURAL ${year}/${month}`
+    const filePath = `${BASE_DIR}/DIRECCION DE DESARROLLO RURAL ${year}`
 
     await mkdir(filePath, { recursive: true })
 
     if (type === FileType.RECEIVED) {
-      await mkdir(`${filePath}/${receivedFolder}`,  {recursive: true })
-      cb(null, `${filePath}/${receivedFolder}`)
+      await mkdir(`${filePath}/${receivedFolder}/${month}`,  {recursive: true })
+      cb(null, `${filePath}/${receivedFolder}/${month}`)
     } else {
-      await mkdir(`${filePath}/${sentFolder}`, { recursive: true })
-      cb(null, `${filePath}/${sentFolder}`)
+      await mkdir(`${filePath}/${sentFolder}/${month}`, { recursive: true })
+      cb(null, `${filePath}/${sentFolder}/${month}`)
     }
   }
 })
