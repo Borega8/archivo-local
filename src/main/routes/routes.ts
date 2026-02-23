@@ -8,6 +8,7 @@ import { FileType } from '../constants/file'
 import { BASE_DIR } from '../constants/basedir'
 import { SerieController } from '../controllers/serie.controller'
 import { AutocompleteFieldController } from '../controllers/field.controller'
+import { receivedFolder, sentFolder } from '../constants/folders'
 
 const storage = multer.diskStorage({
   destination: async (req, _, cb) => {
@@ -20,11 +21,11 @@ const storage = multer.diskStorage({
     await mkdir(filePath, { recursive: true })
 
     if (type === FileType.RECEIVED) {
-      await mkdir(`${filePath}/DOCUMENTOS DE ENTRADA`,  {recursive: true })
-      cb(null, `${filePath}/DOCUMENTOS DE ENTRADA`)
+      await mkdir(`${filePath}/${receivedFolder}`,  {recursive: true })
+      cb(null, `${filePath}/${receivedFolder}`)
     } else {
-      await mkdir(`${filePath}/DOCUMENTOS DE SALIDA`, { recursive: true })
-      cb(null, `${filePath}/DOCUMENTOS DE SALIDA`)
+      await mkdir(`${filePath}/${sentFolder}`, { recursive: true })
+      cb(null, `${filePath}/${sentFolder}`)
     }
   }
 })

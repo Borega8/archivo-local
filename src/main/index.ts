@@ -13,6 +13,7 @@ import path from 'node:path'
 import fs from 'node:fs'
 import { getDatabasePath, initializeDB } from './constants/database'
 import { es } from 'date-fns/locale'
+import { receivedFolder, sentFolder } from './constants/folders'
 
 function setupDatabaseFile() {
   const dbPath = getDatabasePath()
@@ -123,7 +124,7 @@ app.whenReady().then(() => {
           .sheet(0)
           .cell(`A${index + 2}`)
           .value(file.nombre)
-          .hyperlink(`./${month}/DOCUMENTOS DE ENTRADA/${file.file_path.split('/').pop()}`)
+          .hyperlink(`./${month}/${receivedFolder}/${file.file_path.split('/').pop()}`)
       })
 
 
@@ -190,7 +191,7 @@ app.whenReady().then(() => {
           .sheet(0)
           .cell(`A${index + 2}`)
           .value(file.nombre)
-          .hyperlink(`./${month}/DOCUMENTOS DE SALIDA/${file.file_path.split('/').pop()}`)
+          .hyperlink(`./${month}/${sentFolder}/${file.file_path.split('/').pop()}`)
       })
 
       book.toFileAsync(
