@@ -1,9 +1,9 @@
 {
   "name": "archivo-local",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "description": "Gestión documental del archivo de trámite del municipio (local)",
   "main": "./out/main/index.js",
-  "author": "Archivo Municipal de Uruapan",
+  "author": "Enrique González Aquino",
   "homepage": "https://github.com/Borega8/archivo-local",
   "scripts": {
     "format": "prettier --write .",
